@@ -40,6 +40,25 @@ This being open source software, some relatively simple tweaks to `Parser::itera
 ## Structure
 
 ### With All Fields
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<law>
+	<structure>
+		<unit label="" identifier="" order_by="" level=""></unit>
+	</structure>
+	<section_number></section_number>
+	<catch_line></catch_line>
+	<order_by></order_by>
+	<text>
+		<section prefix=""></section>
+	</text>
+	<history></history>
+	<metadata></metadata>
+	<tags>
+		<tag></tag>
+	</tags>
+</law>
+```
 
 ### Bare Minimum
 ```xml
