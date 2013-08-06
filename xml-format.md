@@ -35,3 +35,27 @@ This being open source software, some relatively simple tweaks to `Parser::itera
   * history: the textual description of the history of amendments to this law—optional
   * metadata: a container for any additional fields, which will be stored as key:value in the `laws_meta` table—optional; values of `true` and `false` will be stored in the database as `y` and `n`, respectively, but converted back to `true` and `false` within the internal and external APIs
 
+# Sample XML
+
+## Structure
+
+### With All Fields
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<law>
+ <structure>
+		<unit label="" identifier="" order_by="" level=""></unit>
+	</structure>
+	<section_number></section_number>
+	<catch_line></catch_line>
+	<order_by></order_by>
+	<text>
+		<section prefix=""></section>
+	</text>
+	<history></history>
+	<metadata></metadata>
+	<tags>
+		<tag></tag>
+	</tags>
+</law>
+```
