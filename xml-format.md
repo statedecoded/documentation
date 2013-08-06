@@ -36,9 +36,3 @@ This being open source software, some relatively simple tweaks to `Parser::itera
 ## Structure
 
 ### With All Fields
-
-### Bare Minimum
-
-## Populated
-Here is a complete, populated sample XML file that includes every available parameter.
-
