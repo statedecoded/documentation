@@ -49,7 +49,7 @@ This being open source software, some relatively simple tweaks to `Parser::itera
 	<section_number></section_number>
 	<catch_line></catch_line>
 	<text></text>
-</law>
+</law> 
 ```
 
 ## Populated
