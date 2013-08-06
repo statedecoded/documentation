@@ -1,0 +1,159 @@
+<p>The State Decoded parser can either be modified to use bespoke PHP to parse a legal code in its native format, or it can parse a prescribed XML format. This is a totally invented XML format. There is no legal code that is provided in this format. It is provided as an option because, via <a href="http://en.wikipedia.org/wiki/XSLT">XSLT</a>, it can be substantially easier to convert an existing XML to this format than to write a parser for it in PHP.</p>
+
+<p>Note that this is <em>not</em> an effort to create a standard interchange or storage format for legal codes. This exists solely as a convenience for important data into The State Decoded.</p>
+
+<h1>Descriptive Specifications</h1>
+
+<ul>
+<li>There must be one file per law.</li>
+<li>All files must be in the same directory.</li>
+<li>The names of the files are irrelevant.</li>
+<li>Every file contains both structural data about its container—which chapter/title/part/article/etc. that it's within—and data about the law itself.</li>
+<li>Text must be broken up by subsection, rather than provided as a single block of text, unless the text of the law does not have subsections.</li>
+<li>Subsections may be nested.</li>
+</ul>
+
+<p>This being open source software, some relatively simple tweaks to <code>Parser::iterate</code> and <code>Parser::parse</code> make all of these specifications malleable.</p>
+
+<h1>Fields</h1>
+
+<ul>
+<li>law: the container for all other fields—required
+<ul><li>structure: the container for structural units (chapters, titles, articles, parts, etc.)—required</li>
+<li>unit: a single structural unit that contains this law—required
+<ul><li>label: the type of structural unit that this is (chapter, title, article, part, etc.)—required</li>
+<li>identifier: the unique identifier for this structural unit, almost always a number (e.g., 18.2, 6)—required</li>
+<li>order<em>by: when listing all structural units of this label, in what ordinal position this structural unit should appear—optional</li>
+<li>level: a whole number, starting at one, indicating the depth of this structural unit—required</li></ul></li>
+<li>section</em>number: the unique identifier for this law—required</li>
+<li>catch<em>line: the title of this law—required</li>
+<li>order</em>by: when listing all laws within this structural unit, in what ordinal position this law should appear—optional</li>
+<li>text: the container for the text of the law itself—required</li>
+<li>section: a single labelled section of a law—optional
+<ul><li>prefix: the identifying label for this section (e.g., A, 6, vi)—required</li>
+<li>type: the type of material within this section; default is text, other options are "table" and "image"—optional</li></ul></li>
+<li>history: the textual description of the history of amendments to this law—optional</li>
+<li>metadata: a container for any additional fields, which will be stored as key:value in the <code>laws_meta</code> table—optional; values of <code>true</code> and <code>false</code> will be stored in the database as <code>y</code> and <code>n</code>, respectively, but converted back to <code>true</code> and <code>false</code> within the internal and external APIs</li></ul></li>
+</ul>
+
+<h1>Sample XML</h1>
+
+<h2>Structure</h2>
+
+<h3>With All Fields</h3>
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+
+<p><law>
+    <structure>
+        <unit label="" identifier="" order_by="" level=""></unit>
+    </structure>
+    <section_number></section_number>
+    <catch_line></catch_line>
+    <order_by></order_by>
+    <text>
+        <section prefix=""></section>
+    </text>
+    <history></history>
+    <metadata></metadata>
+    <tags>
+        <tag></tag>
+    </tags>
+</law>
+```</p>
+
+<h3>Bare Minimum</h3>
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+
+<p><law>
+    <structure>
+        <unit label="" identifier="" level=""></unit>
+    </structure>
+    <section_number></section_number>
+    <catch_line></catch_line>
+    <text></text>
+</law>
+```</p>
+
+<h2>Populated</h2>
+
+<p>Here is a complete, populated sample XML file that includes every available parameter.</p>
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+
+<p><law>
+    <structure>
+        <unit label="title" identifier="18.2" order_by="18.2" level="1">Crimes and Offenses Generally</unit>
+        <unit label="chapter" identifier="6" order_by="6" level="2">Crimes Involving Fraud</unit>
+    </structure>
+    <section_number>18.2-186</section_number>
+    <catch_line>False statements to obtain property or credit.</catch_line>
+    <order_by>00000000009104318.2</order_by>
+    <text>
+        <section prefix="1">
+            Notwithstanding § 18.2-186:</p>
+
+<pre><code>        &lt;section prefix="A"&gt;A person shall be guilty of a Class 1 misdemeanor if he makes,
+        causes to be made or conspires to make directly, indirectly or through an agency, any
+        materially false statement in writing, knowing it to be false and intending that it be
+        relied upon, concerning the financial condition or means or ability to pay of himself,
+        or of any other person for whom he is acting, or any firm or corporation in which he is
+        interested or for which he is acting, for the purpose of procuring, for his own benefit
+        or for the benefit of such person, firm or corporation, the delivery of personal
+        property, the payment of cash, the making of a loan or credit, the extension of a
+        credit, the discount of an account receivable, or the making, acceptance, discount, sale
+        or endorsement of a bill of exchange or promissory note.&lt;/section&gt;
+
+        &lt;section prefix="B"&gt;Any person who knows that a false statement has been made in writing
+        concerning the financial condition or ability to pay of himself or of any person for
+        whom he is acting, or any firm or corporation in which he is interested or for which he
+        is acting and who, with intent to defraud, procures, upon the faith thereof.
+
+            &lt;section prefix="i" type="table"&gt;
+            +------------------+--------------------+
+            | PERSON           | STATEMENT          |
+            +------------------+--------------------+
+            | any              | false              |
+            | no               | true               |
+            +------------------+--------------------+
+            &lt;/section&gt;
+
+        For his own benefit, or for the benefit of the person, firm or corporation in which he
+        is interested or for which he is acting, any such delivery, payment, loan, credit,
+        extension, discount making, acceptance, sale or endorsement, shall, if the value of the
+        thing or the amount of the loan, credit or benefit obtained is $200 or more, be guilty
+        of grand larceny or, if the value is less than $200, be guilty of petit
+        larceny.&lt;/section&gt;
+
+        &lt;section prefix="C"&gt;Venue for the trial of any person charged with an offense under this
+        section may be in the county or city in which (i) any act was performed in furtherance
+        of the offense, or (ii) the person charged with the offense resided at the time of the
+        offense.&lt;/section&gt;
+
+        &lt;section prefix="D"&gt;As used in this section, "in writing" shall include information
+        transmitted by computer, facsimile, e-mail, Internet, or any other electronic medium,
+        and shall not include information transmitted by any such medium by voice
+        transmission.&lt;/section&gt;
+    &lt;/section&gt;
+    &lt;section prefix="2"&gt;
+        This law shall expire on July 1, 2014.
+    &lt;/section&gt;
+&lt;/text&gt;
+&lt;history&gt;Code 1950, § 18.1-125; 1960, c. 358; 1975, cc. 14, 15.&lt;/history&gt;
+&lt;metadata&gt;
+    &lt;repealed&gt;y&lt;/repealed&gt;
+    &lt;expiration&gt;2014-07-01&lt;/expiration&gt;
+&lt;/metadata&gt;
+&lt;tags&gt;
+    &lt;tag&gt;lying&lt;/tag&gt;
+    &lt;tag&gt;fraud&lt;/tag&gt;
+    &lt;tag&gt;theft&lt;/tag&gt;
+&lt;/tags&gt;
+</code></pre>
+
+<p></law>
+```</p>
