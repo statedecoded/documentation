@@ -81,6 +81,56 @@ Here is a complete, populated sample XML file that includes every available para
 	<section_number>18.2-186</section_number>
 	<catch_line>False statements to obtain property or credit.</catch_line>
 	<order_by>00000000009104318.2</order_by>
+	<text>
+		<section prefix="1">
+			Notwithstanding § 18.2-186:
+			
+			<section prefix="A">A person shall be guilty of a Class 1 misdemeanor if he makes,
+			causes to be made or conspires to make directly, indirectly or through an agency, any
+			materially false statement in writing, knowing it to be false and intending that it be
+			relied upon, concerning the financial condition or means or ability to pay of himself,
+			or of any other person for whom he is acting, or any firm or corporation in which he is
+			interested or for which he is acting, for the purpose of procuring, for his own benefit
+			or for the benefit of such person, firm or corporation, the delivery of personal
+			property, the payment of cash, the making of a loan or credit, the extension of a
+			credit, the discount of an account receivable, or the making, acceptance, discount, sale
+			or endorsement of a bill of exchange or promissory note.</section>
+
+			<section prefix="B">Any person who knows that a false statement has been made in writing
+			concerning the financial condition or ability to pay of himself or of any person for
+			whom he is acting, or any firm or corporation in which he is interested or for which he
+			is acting and who, with intent to defraud, procures, upon the faith thereof.
+			
+				<section prefix="i" type="table">
+				+------------------+--------------------+
+				| PERSON           | STATEMENT          |
+				+------------------+--------------------+
+				| any              | false              |
+				| no               | true               |
+				+------------------+--------------------+
+				</section>
+
+			For his own benefit, or for the benefit of the person, firm or corporation in which he
+			is interested or for which he is acting, any such delivery, payment, loan, credit,
+			extension, discount making, acceptance, sale or endorsement, shall, if the value of the
+			thing or the amount of the loan, credit or benefit obtained is $200 or more, be guilty
+			of grand larceny or, if the value is less than $200, be guilty of petit
+			larceny.</section>
+
+			<section prefix="C">Venue for the trial of any person charged with an offense under this
+			section may be in the county or city in which (i) any act was performed in furtherance
+			of the offense, or (ii) the person charged with the offense resided at the time of the
+			offense.</section>
+
+			<section prefix="D">As used in this section, "in writing" shall include information
+			transmitted by computer, facsimile, e-mail, Internet, or any other electronic medium,
+			and shall not include information transmitted by any such medium by voice
+			transmission.</section>
+		</section>
+		<section prefix="2">
+			This law shall expire on July 1, 2014.
+		</section>
+	</text>
 	<history>Code 1950, § 18.1-125; 1960, c. 358; 1975, cc. 14, 15.</history>
 	<metadata>
 		<repealed>y</repealed>
