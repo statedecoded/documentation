@@ -77,8 +77,6 @@ Here is a complete, populated sample XML file that includes every available para
 <?xml version="1.0" encoding="utf-8"?>
 <law>
 	<structure>
-		<unit label="title" identifier="18.2" order_by="18.2" level="1">Crimes and Offenses Generally</unit>
-		<unit label="chapter" identifier="6" order_by="6" level="2">Crimes Involving Fraud</unit>
 	</structure>
 	<section_number>18.2-186</section_number>
 	<catch_line>False statements to obtain property or credit.</catch_line>
