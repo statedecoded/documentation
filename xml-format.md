@@ -34,5 +34,3 @@ This being open source software, some relatively simple tweaks to `Parser::itera
 # Sample XML
 
 ## Structure
-
-### With All Fields
