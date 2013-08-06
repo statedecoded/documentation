@@ -42,6 +42,17 @@ This being open source software, some relatively simple tweaks to `Parser::itera
 ### With All Fields
 
 ### Bare Minimum
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<law>
+ <structure>
+		<unit label="" identifier="" level=""></unit>
+	</structure>
+	<section_number></section_number>
+	<catch_line></catch_line>
+	<text></text>
+</law>
+```
 
 ## Populated
 Here is a complete, populated sample XML file that includes every available parameter.
