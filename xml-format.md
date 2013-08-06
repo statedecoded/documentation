@@ -45,12 +45,7 @@ This being open source software, some relatively simple tweaks to `Parser::itera
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <law>
- <structure>
-		<unit label="" identifier="" level=""></unit>
-	</structure>
-	<section_number></section_number>
-	<catch_line></catch_line>
-	<text></text>
+	<structure></structure>
 </law>
 ```
 
