@@ -1,7 +1,3 @@
----
-title: XML Format
----
-
 The State Decoded parser can either be modified to use bespoke PHP to parse a legal code in its native format, or it can parse a prescribed XML format. This is a totally invented XML format. There is no legal code that is provided in this format. It is provided as an option because, via [XSLT](http://en.wikipedia.org/wiki/XSLT), it can be substantially easier to convert an existing XML to this format than to write a parser for it in PHP.
 
 Note that this is *not* an effort to create a standard interchange or storage format for legal codes. This exists solely as a convenience for important data into The State Decoded.
@@ -40,22 +36,9 @@ This being open source software, some relatively simple tweaks to `Parser::itera
 ## Structure
 
 ### With All Fields
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<law>
- <structure>
-		<unit label="" identifier="" order_by="" level=""></unit>
-	</structure>
-	<section_number></section_number>
-	<catch_line></catch_line>
-	<order_by></order_by>
-	<text>
-		<section prefix=""></section>
-	</text>
-	<history></history>
-	<metadata></metadata>
-	<tags>
-		<tag></tag>
-	</tags>
-</law>
-```
+
+### Bare Minimum
+
+## Populated
+Here is a complete, populated sample XML file that includes every available parameter.
+
