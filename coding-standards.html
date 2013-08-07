@@ -1,1401 +1,192 @@
-<h1>Table of Contents</h1>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
 
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>* Generally, [PEAR standards](http://pear.php.net/manual/en/standards.php).
+* Indentation: tabs, not spaces</title>
+
+</head>
+<body>
 <ul>
-<li><a href="#how-to">How to...</a></li>
-<li><a href="#methods">Methods</a>
-<ul><li><a href="#method-law">Law</a></li>
-<li><a href="#method-structure">Structure</a></li>
-<li><a href="#method-dictionary">Dictionary</a></li></ul></li>
-<li><a href="#errors">Errors</a></li>
+<li>Generally, <a href="http://pear.php.net/manual/en/standards.php">PEAR standards</a>.</li>
+<li>Indentation: tabs, not spaces.</li>
+<li>Wrap at 100 columns, unless the result would be confusing.</li>
+<li>Variable names in lowercase (e.g., <code>$section_number</code>), multiple words separated with underscores, never camelCase or StudlyCaps.</li>
+<li>Braces on a new line:
+<code>php
+if ($x == $y)
+{
+  ...
+}
+</code></li>
+<li>Don't use terse expressions (e.g., the ternary operator)</li>
+<li>The results of conditionals should always go within braces, rather than expressed on a single line, e.g.:
+<code>php
+if ($a == TRUE)
+{
+  echo 'true';
+}
+</code></li>
+<li>Boolean terms in all caps (e.g., <code>TRUE</code>).</li>
+<li>Comments as complete sentences, offset like such:
+```php
+/*</li>
+<li>Example comment here.
+*/
+```</li>
+<li>Comments preceded with <code>//</code> indicate temporary, working comments, generally indicating problems.</li>
+<li>If a bit of code is anything short of perfectly obvious, provide a comment explaining it.</li>
 </ul>
 
-<h1><a id="how-to"></a> How to...</h1>
-
-<h2>...get an API key.</h2>
-
-<p>Register for a key on the site in question (e.g., <a href="http://vacode.org/api-key/">Virginia</a>).</p>
-
-<h2>...browse the Code starting at the root.</h2>
-
-<p><code>http://vacode.org/api/structure/?key=[api_key]</code></p>
-
-<h2>...get information about a given law.</h2>
-
-<p><code>http://vacode.org/api/law/[section_number]?key=[api_key]</code></p>
-
-<h2>...get a information about a given title/chapter/part/etc.</h2>
-
-<p><code>http://vacode.org/api/structure/[identifier]?key=[api_key]</code></p>
-
-<h2>...get all definitions for a word or phrase.</h2>
-
-<p><code>http://vacode.org/api/dictionary/[term]?key=[api_key]</code></p>
-
-<h2>...get the definition for a word or phrase as it's used in a specific law.</h2>
-
-<p><code>http://vacode.org/api/dictionary/[term]?section=[section_number]&amp;key=[api_key]</code></p>
-
-<h2>...restrict the fields that are returned.</h2>
-
-<p>Append <code>&amp;fields=field1,field2,field3</code> to the query, substituting the desired field names for "field1," etc.</p>
-
-<h1><a id="methods"></a> Methods</h1>
-
-<h2><a id="method-law"></a> Law</h2>
-
-<p>When provided with a section number identifying an individual law, returns everything that The State Decoded knows about that law.</p>
-
-<h3>Query format</h3>
-
-<p><code>
-http://vacode.org/api/law/[section_number]?key=[api_key]
-</code></p>
-
-<h3>Optional parameters</h3>
-
-<h4>Callback</h4>
-
-<p>Pass the parameter <code>callback</code> and a callback string to have results returned as JSONP.</p>
-
-<p><code>
-http://vacode.org/api/law/[section_number]?key=[api_key]&amp;callback=d9f3lIb013
-</code></p>
-
-<h4>Specified fields</h4>
-
-<p>Pass the parameter <code>fields</code> and a comma-separated listing of fields to limit the response to those fields.</p>
-
-<p><code>
-http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,url_official_url,citation
-</code></p>
-
-<h3>Fields</h3>
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-
-<tr>
-<td>section_number</td>
-<td>string</td>
-<td>The unique identifier for this section.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>section_id</td>
-<td>integer</td>
-<td>Internal unique identifier for this law.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>structure_id</td>
-<td>integer</td>
-<td>Internal unique identifier for the law's containing structural unit.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>catch_line</td>
-<td>string <em>or null</em></td>
-<td>The title of this section.</td>
-<td>Not all legal codes have catch lines. California's laws, for instance, lack them.</td>
-</tr>
-
-<tr>
-<td>history</td>
-<td>string <em>or null</em></td>
-<td>The acts of the legislature that created this law.</td>
-<td>Only some legal codes include histories.</td>
-</tr>
-
-<tr>
-<td>full_text</td>
-<td>string</td>
-<td>The complete text of the law as a single string of text.</td>
-<td>This duplicates the collective contents of `text`, but concatenates all subsections into a single string.</td>
-</tr>
-
-<tr>
-<td>repealed</td>
-<td>true/false</td>
-<td>Indicates whether this law is still in force.</td>
-<td>Only some legal codes continue to publish laws that have been repealed.</td>
-</tr>
-
-<tr>
-<td>text</td>
-<td>array</td>
-<td>Contains the subsections of text that comprise this law.</td>
-<td>There is one child element for each subsection. Some codes may be broken up not by labelled subsection, but by paragraphs that lack any labels or unique identifiers.</td>
-</tr>
-
-<tr>
-<td colspan="4">
-
-<table>
-<tr>
-<td>text</td>
-<td>string</td>
-<td>The text of the subsection.</td>
-<td></td>
-</tr>
-<tr>
-<td>type</td>
-<td>string</td>
-<td>What type of subsection this is—`section` (the default), `table`, `illustration`, or possibly others, as dictated by the needs of each legal code.</td>
-<td></td>
-</tr>
-<tr>
-<td>prefixes</td>
-<td>array</td>
-<td>A list of of the complete prefix path that uniquely identifies this subsection.</td>
-<td></td>
-</tr>
-<tr>
-<td>prefix</td>
-<td>string <em>or null</em></td>
-<td>This subsection's identifying prefix.</td>
-<td></td>
-</tr>
-<tr>
-<td>entire_prefix</td>
-<td>string <em>or null</em></td>
-<td>The complete, uniquely identifying prefix for this subsection.</td>
-<td>The same data that's in `prefixes`, only collapsed into a single string.</td>
-</tr>
-<tr>
-<td>prefix_anchor</td>
-<td>string <em>or null</em></td>
-<td>The complete, uniquely identifying prefix for this subsection, ready to be used in a URL.</td>
-<td>This is `entire_prefix`, URL encoded.</td>
-</tr>
-<tr>
-<td>level</td>
-<td>integer</td>
-<td>How deeply nested that this level is, in the hierarchy of subsections. 1 is the top level.</td>
-<td></td>
-</tr>
-</table>
-
-<p></td>
-</tr></p>
-
-<p><tr>
-<td>ancestry</td>
-<td>array</td>
-<td>Contains a subsection for each hierarchically nested structural unit that contains this law.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td colspan="4"></p>
-
-<table>
-
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>Internal unique identifier for this structural unit.</td>
-<td></td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>The title of this structural unit.</td>
-<td></td>
-</tr>
-<tr>
-<td>identifier</td>
-<td>string</td>
-<td>The identifer for this structural unit.</td>
-<td>This will often—but not always—be a number.</td>
-</tr>
-<tr>
-<td>label</td>
-<td>string</td>
-<td>The name of this level of structural unit.</td>
-<td></td>
-</tr>
-<tr>
-<td>url</td>
-<td>string</td>
-<td>The public (non-API) URL for this structural unit.</td>
-<td></td>
-</tr>
-
-</table>
-
-<p></td>
-</tr></p>
-
-<p><tr>
-<td>structure_contents</td>
-<td>array</td>
-<td>Contains a subsection for each law that is part of the immediate structural unit (siblings of the requested section).</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td colspan="4"></p>
-
-<table>
-
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>Internal unique identifier for this law.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>structure_id</td>
-<td>integer</td>
-<td>Internal unique identifier for the containing structural unit.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>section_number</td>
-<td>string</td>
-<td>The unique identifier for this section.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>catch_line</td>
-<td>string <em>or null</em></td>
-<td>The title of this section.</td>
-<td>Not all legal codes have catch lines. California's laws, for instance, lack them.</td>
-</tr>
-
-<tr>
-<td>url</td>
-<td>string</td>
-<td>The public (non-API) URL for this law.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>api_url</td>
-<td>string</td>
-<td>The API URL for this law.</td>
-<td></td>
-</tr>
-
-</table>
-
-<p></td>
-</tr></p>
-
-<p><tr>
-<td>previous_section</td>
-<td>array</td>
-<td>The prior law within the containing structural unit, as ordered.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td colspan="4"></p>
-
-<table>
-
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>Internal unique identifier for this law.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>structure_id</td>
-<td>integer</td>
-<td>Internal unique identifier for the containing structural unit.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>section_number</td>
-<td>string</td>
-<td>The unique identifier for this section.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>catch_line</td>
-<td>string <em>or null</em></td>
-<td>The title of this section.</td>
-<td>Not all legal codes have catch lines. California's laws, for instance, lack them.</td>
-</tr>
-
-<tr>
-<td>url</td>
-<td>string</td>
-<td>The public (non-API) URL for this law.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>api_url</td>
-<td>string</td>
-<td>The API URL for this law.</td>
-<td></td>
-</tr>
-
-</table>
-
-<p></td>
-</tr></p>
-
-<p><tr>
-<td>next_section</td>
-<td>array</td>
-<td>The following law within the containing structural unit, as ordered.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td colspan="4"></p>
-
-<table>
-
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>Internal unique identifier for this law.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>structure_id</td>
-<td>integer</td>
-<td>Internal unique identifier for the containing structural unit.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>section_number</td>
-<td>string</td>
-<td>The unique identifier for this section.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>catch_line</td>
-<td>string <em>or null</em></td>
-<td>The title of this section.</td>
-<td>Not all legal codes have catch lines. California's laws, for instance, lack them.</td>
-</tr>
-
-<tr>
-<td>url</td>
-<td>string</td>
-<td>The public (non-API) URL for this law.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>api_url</td>
-<td>string</td>
-<td>The API URL for this law.</td>
-<td></td>
-</tr>
-
-</table>
-
-<p></td>
-</tr></p>
-
-<p><tr>
-<td>metadata</td>
-<td>array, <em>or null</em></td>
-<td>Contains all metadata about this law that is stored separately in the metadata table.</td>
-<td>By default, this contains nothing, but any State Decoded implementation that wants to store additional metadata about laws—data beyond the structure otherwise described here—would emit that metadata here.</td>
-</tr></p>
-
-<p><tr>
-<td>court_decisions</td>
-<td>array, <em>or null</em></td>
-<td>Every court decision that cites this law.</td>
-<td>Only available within State Decoded implementations that have chosen to ingest court rulings.</td>
-</tr></p>
-
-<p><tr>
-<td>official_url</td>
-<td>string, <em>or null</em></td>
-<td>The URL for this law on the official website for this legal code.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td>history_text</td>
-<td>string, <em>or null</em></td>
-<td>A narrative version of the <code>history</code> field.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td>references</td>
-<td>array</td>
-<td>A listing of all other laws that refer to this one.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td colspan="4"></p>
-
-<table>
-
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>Internal unique identifier for this law.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>section_number</td>
-<td>string</td>
-<td>The unique identifier for this section.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>catch_line</td>
-<td>string <em>or null</em></td>
-<td>The title of this section.</td>
-<td>Not all legal codes have catch lines. California's laws, for instance, lack them.</td>
-</tr>
-
-<tr>
-<td>url</td>
-<td>string</td>
-<td>The public (non-API) URL for this law.</td>
-<td></td>
-</tr>
-
-</table>
-
-<p></td>
-</tr></p>
-
-<p><tr>
-<td>related</td>
-<td>array</td>
-<td>A list of all other laws that are have been determined through lexical analysis to be similar to this one.</td>
-<td>This list is generated by <a href="http://wiki.apache.org/solr/MoreLikeThis">Solr's MoreLikeThis handler</a>.</td>
-</tr></p>
-
-<p><tr>
-<td colspan="4"></p>
-
-<table>
-
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>Internal unique identifier for this law.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>catch_line</td>
-<td>string <em>or null</em></td>
-<td>The title of this section.</td>
-<td>Not all legal codes have catch lines. California's laws, for instance, lack them.</td>
-</tr>
-
-<tr>
-<td>section_number</td>
-<td>string</td>
-<td>The unique identifier for this section.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>url</td>
-<td>string</td>
-<td>The public (non-API) URL for this law.</td>
-<td></td>
-</tr>
-
-</table>
-
-<p></td>
-</tr></p>
-
-<p><tr>
-<td>amendment_years</td>
-<td>array</td>
-<td>A list of every year in which this law was amended.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td>url</td>
-<td>string</td>
-<td>The public (non-API) URL for this law.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td>citation</td>
-<td>array</td>
-<td>A list of formal citation methods for this law.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td colspan="4"></p>
-
-<table>
-
-<tr>
-<td>official</td>
-<td>string</td>
-<td>A formal citation for this law, in <em>The Bluebook</em> format.</td>
-<td></td>
-</tr>
-<tr>
-<td>universal</td>
-<td>string</td>
-<td>A formal citation for this law, in the <a href="http://universalcitation.org/">AALL <em>Universal Citation Guide</em></a> format.</td>
-<td></td>
-</tr>
-
-</table>
-
-<p></td>
-</tr></p>
-
-<p><tr>
-<td>api_version</td>
-<td>integer</td>
-<td>The version of the API that is returning this result.</td>
-<td></td>
-</tr></p>
-
-<p></tbody>
-</table></p>
-
-<h3>Sample query and response</h3>
-
-<p>Abbreviated for brevity.</p>
-
-<p><code>
-http://vacode.org/api/law/15.2-627?key=[api_key]
-</code></p>
-
-<p><code>json
-{
-    "section_number": "15.2-627",
-    "section_id": "7508",
-    "structure_id": "1980",
-    "catch_line": "Department of education.",
-    "history": "Code 1950, § 15-324; 1956, c. 153; 1962, c. 623, § 15.1-644; 1980, c. 559; 1981, c. 246; 1982, cc. 32, 75; 1995, c. 8; 1996, c. 873; 1997, c. 587.",
-    "full_text": "&lt;p&gt;The department of education shall consist of the county school board, the division superintendent of schools and the officers and employees thereof. Except as herein otherwise provided, the county school board and the division superintendent of schools shall exercise all the powers conferred and perform all the duties imposed upon them by general law. Except for the initial elected board which shall consist of five members, the county school board shall be composed of not less than three nor more than nine members; however, there shall be at least one school board member elected from each of the county’s magisterial or election districts. The members shall be elected by popular vote from election districts coterminous with the election districts for the board of county supervisors. The exact number of members shall be determined by the board of county supervisors. Elections of school board members shall be held to coincide with the elections of members of the board of county supervisors at the regular general election in November. The terms of office for the county school board members shall be the same as the terms of the members of the board of county supervisors and shall commence on January 1 following their election.&lt;\/p&gt;&lt;p&gt;A vacancy in the office of school board member shall be filled pursuant to §§ 24.2-226 and 24.2-228.&lt;\/p&gt;&lt;p&gt;In order to have their names placed on the ballot, all candidates shall be nominated only by petition as provided by general law pursuant to § 24.2-506.&lt;\/p&gt;&lt;p&gt;The county school board may also appoint a resident of the county to cast the deciding vote in case of a tie vote of the school board as provided in § 22.1-75. The tie breaker, if any, shall be appointed for a four-year term whether appointed to fill a vacancy caused by expiration of term or otherwise.&lt;\/p&gt;&lt;p&gt;The chairman of the county school board, for the purpose of appearing before the board of county supervisors, shall be considered head of this department, unless some other person in the department shall be designated by the school board for such purpose.&lt;\/p&gt;",
-    "repealed": "n",
-    "text": {
-        "0": {
-            "text": "The department of education shall consist of the county school board, the division superintendent of schools and the officers and employees thereof. Except as herein otherwise provided, the county school board and the division superintendent of schools shall exercise all the powers conferred and perform all the duties imposed upon them by general law. Except for the initial elected board which shall consist of five members, the county school board shall be composed of not less than three nor more than nine members; however, there shall be at least one school board member elected from each of the county’s magisterial or election districts. The members shall be elected by popular vote from election districts coterminous with the election districts for the board of county supervisors. The exact number of members shall be determined by the board of county supervisors. Elections of school board members shall be held to coincide with the elections of members of the board of county supervisors at the regular general election in November. The terms of office for the county school board members shall be the same as the terms of the members of the board of county supervisors and shall commence on January 1 following their election.",
-            "type": "section",
-            "prefixes": [
-                ""
-            ],
-            "prefix": "",
-            "entire_prefix": "",
-            "prefix_anchor": "",
-            "level": 1
-        },
-        "1": {
-            "text": "A vacancy in the office of school board member shall be filled pursuant to §§ 24.2-226 and 24.2-228.",
-            "type": "section",
-            "prefixes": [
-                ""
-            ],
-            "prefix": "",
-            "entire_prefix": "",
-            "prefix_anchor": "",
-            "level": 1
-        },
-        "2": {
-            "text": "In order to have their names placed on the ballot, all candidates shall be nominated only by petition as provided by general law pursuant to § 24.2-506.",
-            "type": "section",
-            "prefixes": [
-                ""
-            ],
-            "prefix": "",
-            "entire_prefix": "",
-            "prefix_anchor": "",
-            "level": 1
-        },
-        "3": {
-            "text": "The county school board may also appoint a resident of the county to cast the deciding vote in case of a tie vote of the school board as provided in § 22.1-75. The tie breaker, if any, shall be appointed for a four-year term whether appointed to fill a vacancy caused by expiration of term or otherwise.",
-            "type": "section",
-            "prefixes": [
-                ""
-            ],
-            "prefix": "",
-            "entire_prefix": "",
-            "prefix_anchor": "",
-            "level": 1
-        },
-        "4": {
-            "text": "The chairman of the county school board, for the purpose of appearing before the board of county supervisors, shall be considered head of this department, unless some other person in the department shall be designated by the school board for such purpose.",
-            "type": "section",
-            "prefixes": [
-                ""
-            ],
-            "prefix": "",
-            "entire_prefix": "",
-            "prefix_anchor": "",
-            "level": 1
-        }
-    },
-    "ancestry": {
-        "1": {
-            "id": "1980",
-            "name": "County Manager Form of Government",
-            "identifier": "6",
-            "label": "chapter",
-            "url": "/15.2/6/"
-        },
-        "2": {
-            "id": "27",
-            "name": "Counties, Cities and Towns",
-            "identifier": "15.2",
-            "label": "title",
-            "url": "/15.2/"
-        }
-    },
-    "structure_contents": {
-        "0": {
-            "id": "7481",
-            "structure_id": "1980",
-            "section_number": "15.2-600",
-            "catch_line": "Designation of form; applicability of chapter.",
-            "url": "http://vacode.org/15.2-600/",
-            "api_url": "http://vacode.org/api/law/15.2-600/"
-        },
-        "1": {
-            "id": "7482",
-            "structure_id": "1980",
-            "section_number": "15.2-601",
-            "catch_line": "Adoption of county manager form.",
-            "url": "http://vacode.org/15.2-601/",
-            "api_url": "http://vacode.org/api/law/15.2-601/"
-        },
-        "2": {
-            "id": "7483",
-            "structure_id": "1980",
-            "section_number": "15.2-602",
-            "catch_line": "Powers vested in board of supervisors; election and terms of members; vacancies.",
-            "url": "http://vacode.org/15.2-602/",
-            "api_url": "http://vacode.org/api/law/15.2-602/"
-        },
-        "3": {
-            "id": "7484",
-            "structure_id": "1980",
-            "section_number": "15.2-603",
-            "catch_line": "Referendum on election of supervisors by districts or at large.",
-            "url": "http://vacode.org/15.2-603/",
-            "api_url": "http://vacode.org/api/law/15.2-603/"
-        },
-        "4": {
-            "id": "7485",
-            "structure_id": "1980",
-            "section_number": "15.2-604",
-            "catch_line": "General powers of board.",
-            "url": "http://vacode.org/15.2-604/",
-            "api_url": "http://vacode.org/api/law/15.2-604/"
-        },
-        "5": {
-            "id": "7486",
-            "structure_id": "1980",
-            "section_number": "15.2-605",
-            "catch_line": "Prohibiting misdemeanors and providing penalties.",
-            "url": "http://vacode.org/15.2-605/",
-            "api_url": "http://vacode.org/api/law/15.2-605/"
-        },
-        "6": {
-            "id": "7487",
-            "structure_id": "1980",
-            "section_number": "15.2-606",
-            "catch_line": "Investigation of county officers.",
-            "url": "http://vacode.org/15.2-606/",
-            "api_url": "http://vacode.org/api/law/15.2-606/"
-        },
-        "7": {
-            "id": "7488",
-            "structure_id": "1980",
-            "section_number": "15.2-607",
-            "catch_line": "Organization of departments.",
-            "url": "http://vacode.org/15.2-607/",
-            "api_url": "http://vacode.org/api/law/15.2-607/"
-        },
-        "8": {
-            "id": "7489",
-            "structure_id": "1980",
-            "section_number": "15.2-608",
-            "catch_line": "Designation of officers to perform certain duties.",
-            "url": "http://vacode.org/15.2-608/",
-            "api_url": "http://vacode.org/api/law/15.2-608/"
-        },
-        "9": {
-            "id": "7490",
-            "structure_id": "1980",
-            "section_number": "15.2-609",
-            "catch_line": "Appointment of county manager.",
-            "url": "http://vacode.org/15.2-609/",
-            "api_url": "http://vacode.org/api/law/15.2-609/"
-        },
-        "10": {
-            "id": "7491",
-            "structure_id": "1980",
-            "section_number": "15.2-610",
-            "catch_line": "Tenure of office; removal.",
-            "url": "http://vacode.org/15.2-610/",
-            "api_url": "http://vacode.org/api/law/15.2-610/"
-        },
-        "11": {
-            "id": "7492",
-            "structure_id": "1980",
-            "section_number": "15.2-611",
-            "catch_line": "Disability of county manager.",
-            "url": "http://vacode.org/15.2-611/",
-            "api_url": "http://vacode.org/api/law/15.2-611/"
-        },
-        "12": {
-            "id": "7493",
-            "structure_id": "1980",
-            "section_number": "15.2-612",
-            "catch_line": "Manager responsible for administration of affairs of county; appointment of officers and employees.",
-            "url": "http://vacode.org/15.2-612/",
-            "api_url": "http://vacode.org/api/law/15.2-612/"
-        }
-    },
-    "previous_section": {
-        "id": "7507",
-        "structure_id": "1980",
-        "section_number": "15.2-626",
-        "catch_line": "Department and board of social services.",
-        "url": "http://vacode.org/15.2-626/",
-        "api_url": "http://vacode.org/api/law/15.2-626/"
-    },
-    "next_section": {
-        "id": "7509",
-        "structure_id": "1980",
-        "section_number": "15.2-628",
-        "catch_line": "Terms of school boards.",
-        "url": "http://vacode.org/15.2-628/",
-        "api_url": "http://vacode.org/api/law/15.2-628/"
-    },
-    "metadata": {
-        "history": {
-            "1": {
-                "year": "1956",
-                "chapter": "153"
-            },
-            "2": {
-                "year": "1962",
-                "chapter": "623",
-                "section": "1962, c. 623, § 15.1-644"
-            },
-            "3": {
-                "year": "1980",
-                "chapter": "559"
-            },
-            "4": {
-                "year": "1981",
-                "chapter": "246"
-            },
-            "5": {
-                "year": "1982",
-                "chapter": [
-                    "32",
-                    "75"
-                ]
-            },
-            "6": {
-                "year": "1995",
-                "chapter": "8"
-            },
-            "7": {
-                "year": "1996",
-                "chapter": "873"
-            },
-            "8": {
-                "year": "1997",
-                "chapter": "587"
-            }
-        }
-    },
-    "court_decisions": false,
-    "official_url": "http://lis.virginia.gov/cgi-bin/legp604.exe?000+cod+15.2-627",
-    "history_text": "This law has been modified 7 times since it was first created in 1956. Those modifications are cataloged by “The Acts of Assembly,” a state publication, by year and chapter. Those modifications that can be read on the General Assembly’s website will be linked accordingly. Those modifications are as follows: in 1962, chapter 623; in 1980, chapter 559; in 1981, chapter 246; in 1982, chapters 32, 75; in 1995 chapter &lt;a href=\"http://leg1.state.va.us/cgi-bin/legp504.exe?951+ful+CHAP0008\"&gt;8&lt;\/a&gt;; in 1996 chapter &lt;a href=\"http://leg1.state.va.us/cgi-bin/legp504.exe?961+ful+CHAP0873\"&gt;873&lt;\/a&gt;; in 1997 chapter &lt;a href=\"http://leg1.state.va.us/cgi-bin/legp504.exe?971+ful+CHAP0587\"&gt;587&lt;\/a&gt;.",
-    "references": [
-        {
-            "id": "12528",
-            "section_number": "22.1-29.1",
-            "catch_line": "Public hearing before appointment of school board members.",
-            "url": "http://vacode.org/22.1-29.1/"
-        },
-        {
-            "id": "12533",
-            "section_number": "22.1-34",
-            "catch_line": "Application of article.",
-            "url": "http://vacode.org/22.1-34/"
-        },
-        {
-            "id": "12542",
-            "section_number": "22.1-41",
-            "catch_line": "Application of article.",
-            "url": "http://vacode.org/22.1-41/"
-        },
-        {
-            "id": "12596",
-            "section_number": "22.1-75",
-            "catch_line": "Procedure in case of tie vote.",
-            "url": "http://vacode.org/22.1-75/"
-        }
-    ],
-    "related": {
-        "0": {
-            "id": "7469",
-            "catch_line": "Department of education.",
-            "section_number": "15.2-531",
-            "url": "/15.2-531/"
-        },
-        "1": {
-            "id": "7618",
-            "catch_line": "Department of education.",
-            "section_number": "15.2-837",
-            "url": "/15.2-837/"
-        },
-        "2": {
-            "id": "12566",
-            "catch_line": "Election of school board members; appointment of tie breaker.",
-            "section_number": "22.1-57.3",
-            "url": "/22.1-57.3/"
-        },
-        "3": {
-            "id": "7428",
-            "catch_line": "County school board and division superintendent of schools.",
-            "section_number": "15.2-410",
-            "url": "/15.2-410/"
-        },
-        "4": {
-            "id": "7583",
-            "catch_line": "Powers of county vested in board of supervisors; membership, election, terms, etc., of board; vacancies; powers of chairman.",
-            "section_number": "15.2-802",
-            "url": "/15.2-802/"
-        }
-    },
-    "amendment_years": {
-        "0": "1950",
-        "1": "1956",
-        "2": "1962",
-        "3": "1980",
-        "4": "1981",
-        "5": "1982",
-        "6": "1995",
-        "7": "1996",
-        "8": "1997"
-    },
-    "url": "http://vacode.org/15.2-627/",
-    "citation": {
-        "official": "Va. Code §&amp;nbsp;15.2-627",
-        "universal": "VA Code §&amp;nbsp;15.2-627"
-    },
-    "api_version": "0.1"
-}
-</code></p>
-
-<h2><a id="method-structure"></a> Structure</h2>
-
-<p>When provided with a structural identifier identifying an individual structural unit (e.g., a title, a chapter, a part, etc.), returns everything that The State Decoded knows about that structural unit.</p>
-
-<h3>Query format</h3>
-
-<p><code>http://vacode.org/api/structure/[identifier]?key=[api_key]</code></p>
-
-<p>Leave [identifier] blank to get a top-level listing of structural units—that is, the major structural units that make up the basic divisions of the code (e.g., titles).</p>
-
-<h3>Optional parameters</h3>
-
-<h4>Callback</h4>
-
-<p>Pass the parameter <code>callback</code> and a callback string to have results returned as JSONP.</p>
-
-<p><code>
-http://vacode.org/api/structure/[identifier]?key=[api_key]&amp;callback=d9f3lIb013
-</code></p>
-
-<h4>Specified fields</h4>
-
-<p>Pass the parameter <code>fields</code> and a comma-separated listing of fields to limit the response to those fields.</p>
-
-<p><code>
-http://vacode.org/api/structure/[identifier]?key=[api_key]&amp;fields=catch_line,url_official_url,citation
-</code></p>
-
-<h3>Fields</h3>
-
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-
-<tr>
-<td>ancestry</td>
-<td>array</td>
-<td>Information about every structural unit included in the path specified in the request.</td>
-<td></td>
-</tr>
-
-<tr>
-<td colspan="4">
-<table>
-
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>Internal unique identifier for this structural unit.</td>
-<td></td>
-</tr>
-<tr>
-<td>identifier</td>
-<td>string</td>
-<td>The identifer for this structural unit.</td>
-<td>This will often—but not always—be a number.</td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>The title of this structural unit.</td>
-<td></td>
-</tr>
-<tr>
-<td>label</td>
-<td>string</td>
-<td>The name of this level of structural unit.</td>
-<td></td>
-</tr>
-<tr>
-<td>parent_id</td>
-<td>integer</td>
-<td>Internal unique identifier for this structural unit’s parent.</td>
-<td></td>
-</tr>
-<tr>
-<td>level</td>
-<td>integer</td>
-<td>How deeply nested that this level is, in the hierarchy of subsections. 1 is the top level.</td>
-<td></td>
-</tr>
-<tr>
-<td>url</td>
-<td>string</td>
-<td>The public (non-API) URL for this structural unit.</td>
-<td></td>
-</tr>
-
-</table>
-
-<p></td>
-</tr></p>
-
-<p><tr>
-<td>children</td>
-<td>array</td>
-<td>A list of every structural unit that is a child of the requested one.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td colspan="4"></p>
-
-<table>
-
-
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>Internal unique identifier for this structural unit.</td>
-<td></td>
-</tr>
-<tr>
-<td>label</td>
-<td>string</td>
-<td>The name of this level of structural unit.</td>
-<td></td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>The title of this structural unit.</td>
-<td></td>
-</tr>
-<tr>
-<td>identifier</td>
-<td>string</td>
-<td>The identifer for this structural unit.</td>
-<td>This will often—but not always—be a number.</td>
-</tr>
-<tr>
-<td>url</td>
-<td>string</td>
-<td>The public (non-API) URL for this structural unit.</td>
-<td></td>
-</tr>
-<tr>
-<td>api_url</td>
-<td>string</td>
-<td>The API URL for this structural unit.</td>
-<td></td>
-</tr>
-
-</table>
-
-<p></td>
-</tr></p>
-
-<p><tr>
-<td>laws</td>
-<td>array</td>
-<td>A list of every law that is a child of the requested structural unit.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td colspan="4"></p>
-
-<table>
-
-<tr>
-<td>id</td>
-<td>integer</td>
-<td>Internal unique identifier for this law.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>structure_id</td>
-<td>integer</td>
-<td>Internal unique identifier for the containing structural unit.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>section_number</td>
-<td>string</td>
-<td>The unique identifier for this section.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>catch_line</td>
-<td>string <em>or null</em></td>
-<td>The title of this section.</td>
-<td>Not all legal codes have catch lines. California's laws, for instance, lack them.</td>
-</tr>
-
-<tr>
-<td>url</td>
-<td>string</td>
-<td>The public (non-API) URL for this law.</td>
-<td></td>
-</tr>
-
-<tr>
-<td>api_url</td>
-<td>string</td>
-<td>The API URL for this law.</td>
-<td></td>
-</tr>
-
-</table>
-
-<p></tr>
-</td></p>
-
-<p><tr>
-<td>api_version</td>
-<td>integer</td>
-<td>The version of the API that is returning this result.</td>
-<td></td>
-</tr></p>
-
-<p></tbody>
-</table></p>
-
-<h3>Sample query and response</h3>
-
-<p><code>
-http://vacode.org/api/structure/18.2?key=[api_key]
-</code></p>
-
-<p><code>json
-{
-    "ancestry": {
-        "0": {
-            "id": "30",
-            "identifier": "18.2",
-            "name": "Crimes and Offenses Generally",
-            "label": "title",
-            "parent_id": "",
-            "level": 1,
-            "url": "http://vacode.org/18.2/"
-        }
-    },
-    "children": {
-        "0": {
-            "id": "2082",
-            "label": "chapter",
-            "name": "In General",
-            "identifier": "1",
-            "url": "http://vacode.org/18.2/1/",
-            "api_url": "http://vacode.org/api/structure/18.2/1/"
-        },
-        "1": {
-            "id": "2083",
-            "label": "chapter",
-            "name": "Principals and Accessories",
-            "identifier": "2",
-            "url": "http://vacode.org/18.2/2/",
-            "api_url": "http://vacode.org/api/structure/18.2/2/"
-        },
-        "2": {
-            "id": "2084",
-            "label": "chapter",
-            "name": "Inchoate Offenses",
-            "identifier": "3",
-            "url": "http://vacode.org/18.2/3/",
-            "api_url": "http://vacode.org/api/structure/18.2/3/"
-        },
-        "3": {
-            "id": "2085",
-            "label": "chapter",
-            "name": "Crimes Against the Person",
-            "identifier": "4",
-            "url": "http://vacode.org/18.2/4/",
-            "api_url": "http://vacode.org/api/structure/18.2/4/"
-        },
-        "4": {
-            "id": "2086",
-            "label": "chapter",
-            "name": "Crimes Against Property",
-            "identifier": "5",
-            "url": "http://vacode.org/18.2/5/",
-            "api_url": "http://vacode.org/api/structure/18.2/5/"
-        },
-        "5": {
-            "id": "2087",
-            "label": "chapter",
-            "name": "Crimes Involving Fraud",
-            "identifier": "6",
-            "url": "http://vacode.org/18.2/6/",
-            "api_url": "http://vacode.org/api/structure/18.2/6/"
-        },
-        "6": {
-            "id": "2088",
-            "label": "chapter",
-            "name": "Crimes Involving Health and Safety",
-            "identifier": "7",
-            "url": "http://vacode.org/18.2/7/",
-            "api_url": "http://vacode.org/api/structure/18.2/7/"
-        },
-        "7": {
-            "id": "2089",
-            "label": "chapter",
-            "name": "Crimes Involving Morals and Decency",
-            "identifier": "8",
-            "url": "http://vacode.org/18.2/8/",
-            "api_url": "http://vacode.org/api/structure/18.2/8/"
-        },
-        "8": {
-            "id": "2090",
-            "label": "chapter",
-            "name": "Crimes Against Peace and Order",
-            "identifier": "9",
-            "url": "http://vacode.org/18.2/9/",
-            "api_url": "http://vacode.org/api/structure/18.2/9/"
-        },
-        "9": {
-            "id": "2091",
-            "label": "chapter",
-            "name": "Crimes Against the Administration of Justice",
-            "identifier": "10",
-            "url": "http://vacode.org/18.2/10/",
-            "api_url": "http://vacode.org/api/structure/18.2/10/"
-        },
-        "10": {
-            "id": "2092",
-            "label": "chapter",
-            "name": "Offenses Against the Sovereignty of the Commonwealth",
-            "identifier": "11",
-            "url": "http://vacode.org/18.2/11/",
-            "api_url": "http://vacode.org/api/structure/18.2/11/"
-        },
-        "11": {
-            "id": "2093",
-            "label": "chapter",
-            "name": "Miscellaneous",
-            "identifier": "12",
-            "url": "http://vacode.org/18.2/12/",
-            "api_url": "http://vacode.org/api/structure/18.2/12/"
-        },
-        "12": {
-            "id": "2094",
-            "label": "chapter",
-            "name": "Virginia Racketeer Influenced and Corrupt Organization Act",
-            "identifier": "13",
-            "url": "http://vacode.org/18.2/13/",
-            "api_url": "http://vacode.org/api/structure/18.2/13/"
-        }
-    },
-    "laws": false
-}
-</code></p>
-
-<h2><a id="method-dictionary"></a> Dictionary</h2>
-
-<p>When provided with a term, returns all definitions for that term found within the code.</p>
-
-<h3>Query format</h3>
-
-<p><code>
-http://vacode.org/api/dictionary/[word_or_phrase]?key=[api_key]
-</code></p>
-
-<h3>Optional parameters</h3>
-
-<h4>Section number</h4>
-
-<p>Pass the parameter <code>section</code> and a section number, and get only the definition of the term that is relevant to that law. (Most terms have a defined scope of a given structural unit or law.) <em>N.B.: Because only one definition is returned, rather than providing an array of definitions, just a single definition’s fields are returned. They are not stored as the lone element in an array, but are at the top level of the JSON.</em></p>
-
-<p><code>
-http://vacode.org/api/dictionary/person?section=12.1-14&amp;key=[api_key]
-</code></p>
-
-<h4>Callback</h4>
-
-<p>Pass the parameter <code>callback</code> and a callback string to have results returned as JSONP.</p>
-
-<p><code>
-http://vacode.org/api/dictionary/[word_or_phrase]?key=[api_key]&amp;callback=d9f3lIb013
-</code></p>
-
-<h4>Specified fields</h4>
-
-<p>Pass the parameter <code>fields</code> and a comma-separated listing of fields to limit the response to those fields.</p>
-
-<p><code>
-http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=definition
-</code></p>
-
-<h3>Fields</h3>
-
-<p><table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody></p>
-
-<p><tr>
-<td>term</td>
-<td>string</td>
-<td>The term that is being defined.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td>definition</td>
-<td>string</td>
-<td>The text of the definition.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td>scope</td>
-<td>string</td>
-<td>How broadly that this definition applies.</td>
-<td>This is based on the structural unit labels, which vary between implementations. Possible values might be <code>title</code>, <code>chapter</code>, <code>part</code>, or others. A definition that applies to just one law would have a value of <code>section</code>, while a definition that applies to the whole code would have a value of <code>global</code>.</td>
-</tr></p>
-
-<p><tr>
-<td>section_number</td>
-<td>string</td>
-<td>The unique identifier for the section in which the definition appears.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td>url</td>
-<td>string</td>
-<td>The URL of the section in which the definition appears.</td>
-<td></td>
-</tr></p>
-
-<p><tr>
-<td>formatted</td>
-<td>string</td>
-<td>The definition, with display-ready formatting and a citation.</td>
-<td>This is the same as the content of <code>definition</code>, with typographic niceties and a parenthetical citation.</td>
-</tr></p>
-
-<p><tr>
-<td>api_version</td>
-<td>integer</td>
-<td>The version of the API that is returning this result.</td>
-<td></td>
-</tr></p>
-
-<h3>Sample query and response</h3>
-
-<p><code>
-http://vacode.org/api/dictionary/person?section=12.1-14&amp;key=[api_key]
-</code></p>
-
-<p><code>json
-{
-    "term": "person",
-    "definition": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof.",
-    "section_number": "1-230",
-    "scope": "global",
-    "url": "http://vacode.org/1-230/",
-    "formatted": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof. (&lt;a href=\"http://vacode.org/1-230/\"&gt;§&amp;nbsp;1-230&lt;\/a&gt;)",
-    "api_version": "0.1"
-}
-</code></p>
-
-<h1><a id="errors"></a>Errors</h1>
-
-<p>When a request cannot be completed, the API will return a JSON-formatted error. For example, if an invalid key is provided in a request, the response would be as follows:</p>
-
-<p><code>json
-"error"
-{
-    "message": "An Error Occurred",
-    "details": "Invalid key."
-}
-</code></p>
+</body>
+</html>
