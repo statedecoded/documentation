@@ -47,118 +47,113 @@ layout: default
 
 <h3>With All Fields</h3>
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-
-<p><law>
-    <structure>
-        <unit label="" identifier="" order_by="" level=""></unit>
-    </structure>
-    <section_number></section_number>
-    <catch_line></catch_line>
-    <order_by></order_by>
-    <text>
-        <section prefix=""></section>
-    </text>
-    <history></history>
-    <metadata></metadata>
-    <tags>
-        <tag></tag>
-    </tags>
-</law>
-```</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;law&gt;
+    &lt;structure&gt;
+        &lt;unit label="" identifier="" order_by="" level=""&gt;&lt;/unit&gt;
+    &lt;/structure&gt;
+    &lt;section_number&gt;&lt;/section_number&gt;
+    &lt;catch_line&gt;&lt;/catch_line&gt;
+    &lt;order_by&gt;&lt;/order_by&gt;
+    &lt;text&gt;
+        &lt;section prefix=""&gt;&lt;/section&gt;
+    &lt;/text&gt;
+    &lt;history&gt;&lt;/history&gt;
+    &lt;metadata&gt;&lt;/metadata&gt;
+    &lt;tags&gt;
+        &lt;tag&gt;&lt;/tag&gt;
+    &lt;/tags&gt;
+&lt;/law&gt;
+</pre>
 
 <h3>Bare Minimum</h3>
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-
-<p><law>
-    <structure>
-        <unit label="" identifier="" level=""></unit>
-    </structure>
-    <section_number></section_number>
-    <catch_line></catch_line>
-    <text></text>
-</law>
-```</p>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;law&gt;
+    &lt;structure&gt;
+        &lt;unit label="" identifier="" level=""&gt;&lt;/unit&gt;
+    &lt;/structure&gt;
+    &lt;section_number&gt;&lt;/section_number&gt;
+    &lt;catch_line&gt;&lt;/catch_line&gt;
+    &lt;text&gt;&lt;/text&gt;
+&lt;/law&gt;
+</pre>
 
 <h2>Populated</h2>
 
 <p>Here is a complete, populated sample XML file that includes every available parameter.</p>
 
-```xml
-<?xml version="1.0" encoding="utf-8"?>
+<pre>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;law&gt;
+    &lt;structure&gt;
+        &lt;unit label="title" identifier="18.2" order_by="18.2" level="1"&gt;Crimes and Offenses Generally&lt;/unit&gt;
+        &lt;unit label="chapter" identifier="6" order_by="6" level="2"&gt;Crimes Involving Fraud&lt;/unit&gt;
+    &lt;/structure&gt;
+    &lt;section_number&gt;18.2-186&lt;/section_number&gt;
+    &lt;catch_line&gt;False statements to obtain property or credit.&lt;/catch_line&gt;
+    &lt;order_by&gt;00000000009104318.2&lt;/order_by&gt;
+    &lt;text&gt;
+        &lt;section prefix="1"&gt;
+            Notwithstanding § 18.2-186:
 
-<p><law>
-    <structure>
-        <unit label="title" identifier="18.2" order_by="18.2" level="1">Crimes and Offenses Generally</unit>
-        <unit label="chapter" identifier="6" order_by="6" level="2">Crimes Involving Fraud</unit>
-    </structure>
-    <section_number>18.2-186</section_number>
-    <catch_line>False statements to obtain property or credit.</catch_line>
-    <order_by>00000000009104318.2</order_by>
-    <text>
-        <section prefix="1">
-            Notwithstanding § 18.2-186:</p>
+			&lt;section prefix="A"&gt;A person shall be guilty of a Class 1 misdemeanor if he makes,
+			causes to be made or conspires to make directly, indirectly or through an agency, any
+			materially false statement in writing, knowing it to be false and intending that it be
+			relied upon, concerning the financial condition or means or ability to pay of himself,
+			or of any other person for whom he is acting, or any firm or corporation in which he is
+			interested or for which he is acting, for the purpose of procuring, for his own benefit
+			or for the benefit of such person, firm or corporation, the delivery of personal
+			property, the payment of cash, the making of a loan or credit, the extension of a
+			credit, the discount of an account receivable, or the making, acceptance, discount, sale
+			or endorsement of a bill of exchange or promissory note.&lt;/section&gt;
 
-<pre><code>        &lt;section prefix="A"&gt;A person shall be guilty of a Class 1 misdemeanor if he makes,
-        causes to be made or conspires to make directly, indirectly or through an agency, any
-        materially false statement in writing, knowing it to be false and intending that it be
-        relied upon, concerning the financial condition or means or ability to pay of himself,
-        or of any other person for whom he is acting, or any firm or corporation in which he is
-        interested or for which he is acting, for the purpose of procuring, for his own benefit
-        or for the benefit of such person, firm or corporation, the delivery of personal
-        property, the payment of cash, the making of a loan or credit, the extension of a
-        credit, the discount of an account receivable, or the making, acceptance, discount, sale
-        or endorsement of a bill of exchange or promissory note.&lt;/section&gt;
-
-        &lt;section prefix="B"&gt;Any person who knows that a false statement has been made in writing
-        concerning the financial condition or ability to pay of himself or of any person for
-        whom he is acting, or any firm or corporation in which he is interested or for which he
-        is acting and who, with intent to defraud, procures, upon the faith thereof.
-
-            &lt;section prefix="i" type="table"&gt;
-            +------------------+--------------------+
-            | PERSON           | STATEMENT          |
-            +------------------+--------------------+
-            | any              | false              |
-            | no               | true               |
-            +------------------+--------------------+
-            &lt;/section&gt;
-
-        For his own benefit, or for the benefit of the person, firm or corporation in which he
-        is interested or for which he is acting, any such delivery, payment, loan, credit,
-        extension, discount making, acceptance, sale or endorsement, shall, if the value of the
-        thing or the amount of the loan, credit or benefit obtained is $200 or more, be guilty
-        of grand larceny or, if the value is less than $200, be guilty of petit
-        larceny.&lt;/section&gt;
-
-        &lt;section prefix="C"&gt;Venue for the trial of any person charged with an offense under this
-        section may be in the county or city in which (i) any act was performed in furtherance
-        of the offense, or (ii) the person charged with the offense resided at the time of the
-        offense.&lt;/section&gt;
-
-        &lt;section prefix="D"&gt;As used in this section, "in writing" shall include information
-        transmitted by computer, facsimile, e-mail, Internet, or any other electronic medium,
-        and shall not include information transmitted by any such medium by voice
-        transmission.&lt;/section&gt;
-    &lt;/section&gt;
-    &lt;section prefix="2"&gt;
-        This law shall expire on July 1, 2014.
-    &lt;/section&gt;
-&lt;/text&gt;
-&lt;history&gt;Code 1950, § 18.1-125; 1960, c. 358; 1975, cc. 14, 15.&lt;/history&gt;
-&lt;metadata&gt;
-    &lt;repealed&gt;y&lt;/repealed&gt;
-    &lt;expiration&gt;2014-07-01&lt;/expiration&gt;
-&lt;/metadata&gt;
-&lt;tags&gt;
-    &lt;tag&gt;lying&lt;/tag&gt;
-    &lt;tag&gt;fraud&lt;/tag&gt;
-    &lt;tag&gt;theft&lt;/tag&gt;
-&lt;/tags&gt;
-</code></pre>
-
-<p></law>
-```</p>
+			&lt;section prefix="B"&gt;Any person who knows that a false statement has been made in writing
+			concerning the financial condition or ability to pay of himself or of any person for
+			whom he is acting, or any firm or corporation in which he is interested or for which he
+			is acting and who, with intent to defraud, procures, upon the faith thereof.
+	
+				&lt;section prefix="i" type="table"&gt;
+				+------------------+--------------------+
+				| PERSON           | STATEMENT          |
+				+------------------+--------------------+
+				| any              | false              |
+				| no               | true               |
+				+------------------+--------------------+
+				&lt;/section&gt;
+	
+			For his own benefit, or for the benefit of the person, firm or corporation in which he
+			is interested or for which he is acting, any such delivery, payment, loan, credit,
+			extension, discount making, acceptance, sale or endorsement, shall, if the value of the
+			thing or the amount of the loan, credit or benefit obtained is $200 or more, be guilty
+			of grand larceny or, if the value is less than $200, be guilty of petit
+			larceny.&lt;/section&gt;
+	
+			&lt;section prefix="C"&gt;Venue for the trial of any person charged with an offense under this
+			section may be in the county or city in which (i) any act was performed in furtherance
+			of the offense, or (ii) the person charged with the offense resided at the time of the
+			offense.&lt;/section&gt;
+	
+			&lt;section prefix="D"&gt;As used in this section, "in writing" shall include information
+			transmitted by computer, facsimile, e-mail, Internet, or any other electronic medium,
+			and shall not include information transmitted by any such medium by voice
+			transmission.&lt;/section&gt;
+		&lt;/section&gt;
+		&lt;section prefix="2"&gt;
+			This law shall expire on July 1, 2014.
+		&lt;/section&gt;
+	&lt;/text&gt;
+	&lt;history&gt;Code 1950, § 18.1-125; 1960, c. 358; 1975, cc. 14, 15.&lt;/history&gt;
+	&lt;metadata&gt;
+		&lt;repealed&gt;y&lt;/repealed&gt;
+		&lt;expiration&gt;2014-07-01&lt;/expiration&gt;
+	&lt;/metadata&gt;
+	&lt;tags&gt;
+		&lt;tag&gt;lying&lt;/tag&gt;
+		&lt;tag&gt;fraud&lt;/tag&gt;
+		&lt;tag&gt;theft&lt;/tag&gt;
+	&lt;/tags&gt;
+</law>
+</pre>
