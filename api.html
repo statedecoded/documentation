@@ -595,11 +595,11 @@ http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,u
 
 <p>Abbreviated for brevity.</p>
 
-<p><code>
+<pre><code>
 http://vacode.org/api/law/15.2-627?key=[api_key]
-</code></p>
+</code></pre>
 
-<p><code>json
+<pre><code>
 {
     "section_number": "15.2-627",
     "section_id": "7508",
@@ -922,7 +922,7 @@ http://vacode.org/api/law/15.2-627?key=[api_key]
     },
     "api_version": "0.1"
 }
-</code></p>
+</code></pre>
 
 <h2><a id="method-structure"></a> Structure</h2>
 
@@ -1154,7 +1154,7 @@ http://vacode.org/api/structure/[identifier]?key=[api_key]&amp;fields=catch_line
 http://vacode.org/api/structure/18.2?key=[api_key]
 </code></p>
 
-<p><code>json
+<pre><code>
 {
     "ancestry": {
         "0": {
@@ -1275,7 +1275,7 @@ http://vacode.org/api/structure/18.2?key=[api_key]
     },
     "laws": false
 }
-</code></p>
+</code></pre>
 
 <h2><a id="method-dictionary"></a> Dictionary</h2>
 
@@ -1381,7 +1381,7 @@ http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=defini
 http://vacode.org/api/dictionary/person?section=12.1-14&amp;key=[api_key]
 </code></p>
 
-<p><code>json
+<pre><code>
 {
     "term": "person",
     "definition": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof.",
@@ -1391,13 +1391,13 @@ http://vacode.org/api/dictionary/person?section=12.1-14&amp;key=[api_key]
     "formatted": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof. (&lt;a href=\"http://vacode.org/1-230/\"&gt;§&amp;nbsp;1-230&lt;\/a&gt;)",
     "api_version": "0.1"
 }
-</code></p>
+</code></pre>
 
 <h1><a id="errors"></a>Errors</h1>
 
 <p>When a request cannot be completed, the API will return a JSON-formatted error. For example, if an invalid key is provided in a request, the response would be as follows:</p>
 
-<p><code>json
+<pre><code>
 "error"
 {
     "message": "An Error Occurred",
