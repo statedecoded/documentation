@@ -54,8 +54,8 @@ Here is the process of configuring the beta version of The State Decoded. (Most 
 1. Go through `config.inc.php` and configure each setting.
 1. Customize the URL rewrites in `htdocs/.htaccess` to suit your own legal code's structure, using the provided file as a template. [See mod_rewrite instructions](http://httpd.apache.org/docs/current/mod/mod_rewrite.html) for details.
 1. Prepare the parser.
-1. Straightforward route: With all laws in [the State Decoded XML format](xml-format.html), copy all XML files to `htdocs/admin/xml/`.
-1. Custom route: Modify `class.[Statename].inc.php`—specifically `Parser::iterate`, `Parser::parse`, and `Parser::store`—to support the legal code that you will be importing. See "[How the Parser Works](parser.html)" for details.
+	* Straightforward route: With all laws in [the State Decoded XML format](xml-format.html), copy all XML files to `htdocs/admin/xml/`.
+	* Custom route: Modify `class.[Statename].inc.php`—specifically `Parser::iterate`, `Parser::parse`, and `Parser::store`—to support the legal code that you will be importing. See "[How the Parser Works](parser.html)" for details.
 1. Password-protect the admin section by modifying the `htdocs/admin/.htaccess` and creating `htdocs/admin/`.htpasswd`. ([Sample instructions](http://www.seas.upenn.edu/cets/answers/auth-htpasswd.html).)
 1. Load `http://example.com/admin/` in your browser and click the “Parse“ button. Wait while the parser runs, which could require anywhere from 5–60 minutes to run, depending on the power of the server and the length of the legal code.
 
@@ -90,7 +90,17 @@ Within `class.[Statename].inc.php`, the `extract_definitions()` method does its 
 
 Others might be defined for an entire structural unit—a chapter, title, part, or other named structural unit. And still others might be global, defined for the entire legal code. Every legal code has its own terminology, and many are inconsistent in how a definition's scope is described. "As used in this chapter," "for the purpose of this chapter," and "for purposes of this chapter" are all viable phrases indicating scope. These candidate phrases are stored in the `$scope_indicators` array. The scope of a list of definitions is gathered from the first paragraph in that list.
 
-Then there are the phrases that indicate an actual definition: "mean," "means," "shall include," "includes," "has the same meaning as," "shall be construed," and "shall also be construed to mean" are all terms that can connect a defined term to its definition. These are stored in the `$linking_phrases` array.
+Then there are the phrases that indicate an actual definition:
+
+* "mean"
+* "means"
+* "shall include"
+"includes"
+"has the same meaning as"
+"shall be construed"
+"shall also be construed to mean"
+
+These are all terms that can connect a defined term to its definition. These are stored in the `$linking_phrases` array. If your legal code uses different terminology, you need only add its linking phrases to the list.
 
 Finally, the terms themselves are located based on the presence of quotation marks. (Either straight quotation marks—`U+0022` in Unicode—or angled double quotation marks—`U+201C` and `U+201D` in Unicode.) If the terms within your legal code are not stored within double quotation marks, then `extract_definitions()` will need to be modified to be able to isolate those terms, such as locating them within `<em></em>` tags. For those rare legal codes that do not offset defined terms in any way (italics, quotation marks, or otherwise; e.g., Nebraska), modifications to the code will be necessary in order to isolate the term being defined.
 
