@@ -11,10 +11,6 @@ The State Decoded is a program that takes structured legal data and generates a 
 
 Governments, open-government groups, lone data hackers, law libraries, or anybody else who wants to put legal data online.
 
-# Prerequisites
-
-If you are using The State Decoded for a legal code or for regulations, you must have an ongoing source of updates to those laws to keep your website current. This is an essential element without which you would be foolish to proceed. *It’s not enough to get a copy of the legal code once. You must have a system to obtain regular updates as the code is updated.* This isn't a technical requirement for the software, but it’s a crucial practical prerequisite.
-
 # Getting a Copy of the Legal Code
 
 Getting the laws or regulations in question can be a non-trivial challenge. It will almost certainly be more work than actually setting up The State Decoded.
@@ -29,6 +25,10 @@ The best way to start obtaining bulk legal data is almost always to contact the 
 
 The worst-case scenario is that you’d need to issue a FOIA request to get the data that you need, and re-issue that request to get an updated copy as often as it’s updated. This is a last resort.
 
+# You Must Provide Updates
+
+If you are using The State Decoded for a legal code or for regulations, you must have an ongoing source of updates to those laws to keep your website current. This is an essential element without which you would be foolish to proceed. *It’s not enough to get a copy of the legal code once. You must have a method of obtaining regular updates as the code is updated.* This isn't a technical requirement for the software, but it’s a crucial practical prerequisite.
+
 # A Stern Warning About Data Quality
 
-By putting a legal code online, you are providing information that, inevitably, people will rely on. You’re implicitly making an agreement to the public that you will present accurate information and keep that information on your site up-to-date. You mustn’t start a site like this on a lark. You’re making an indefinite commitment in the public interest.
+By putting a legal code online, you are providing information that, inevitably, people will rely on. You’re implicitly making an agreement to the public that you will present accurate information and keep that information on your site up-to-date. You mustn’t start a site like this on a lark. You’re making an indefinite commitment to the public interest.
