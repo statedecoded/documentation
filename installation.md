@@ -108,7 +108,7 @@ Many legal codes use coherent, compact, unique citation methods, assigning every
 
 The first step to doing this is to copy the `replace_sections()` method found within `includes/class.Autolinker.inc.php` and paste it into your `class.[Statename].inc.php` file, within a `State_Autolinker` class, like such:
 
-```php
+```
 class State_Autolinker extends Autolinker
 {
   function replace_sections()
