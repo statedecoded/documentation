@@ -9,7 +9,7 @@ layout: default
 
 Essentially, it works like this, as invoked within `parser-controller.inc.php`:
 
-```php
+```
 while ($section = $parser->iterate())
 {
 	$parser->section = $section;
