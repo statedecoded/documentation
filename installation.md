@@ -7,8 +7,8 @@ layout: default
 
 The following programs and modules are required to run The State Decoded, in addition to a basic LAMP/WAMP stack (MySQL 5+, PHP 5.2+, Apache 2+). They are almost certainly already installed on any standard server. The State Decoded’s installer will automatically check to see whether these are installed.
 
-* <a href="http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php">Make sure that Apache has `mod_rewrite` enabled</a> and that <a href="https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles">`.htaccess` files can use `RewriteRule`</a>.
-* Make sure that <a href="http://php.net/manual/en/book.pdo.php">PHP's PDO extension</a> has MySQL support included (which it probably does):
+* [Make sure that Apache has `mod_rewrite` enabled](http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php) and that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles).
+* Make sure that [PHP's PDO extension](http://php.net/manual/en/book.pdo.php) has MySQL support included (which it probably does):
 * Red Hat/Fedora/CentOS: `sudo yum install php-mysql`
 * SuSE: `yast2 --install php5-mysql`
 * Debian/Ubuntu: `sudo apt-get install php5-mysql`
