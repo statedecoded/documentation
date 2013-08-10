@@ -9,27 +9,27 @@ layout: default
 <li>Wrap at 100 columns, unless the result would be confusing.</li>
 <li>Variable names in lowercase (e.g., <code>$section_number</code>), multiple words separated with underscores, never camelCase or StudlyCaps.</li>
 <li>Braces on a new line:
-<code>php
+<pre><code>
 if ($x == $y)
 {
   ...
 }
-</code></li>
-<li>Don't use terse expressions (e.g., the ternary operator)</li>
+</code></pre></li>
+<li>Don't use terse expressions (e.g., the ternary operator).</li>
 <li>The results of conditionals should always go within braces, rather than expressed on a single line, e.g.:
-<code>php
+<pre><code>
 if ($a == TRUE)
 {
   echo 'true';
 }
-</code></li>
+</code></pre></li>
 <li>Boolean terms in all caps (e.g., <code>TRUE</code>).</li>
 <li>Comments as complete sentences, offset like such:
-```php
-/*</li>
-<li>Example comment here.
-*/
-```</li>
+<pre><code>
+/*
+ * Example comment here.
+ */
+</pre></code></li>
 <li>Comments preceded with <code>//</code> indicate temporary, working comments, generally indicating problems.</li>
 <li>If a bit of code is anything short of perfectly obvious, provide a comment explaining it.</li>
 </ul>
