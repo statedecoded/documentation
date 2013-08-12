@@ -26,6 +26,18 @@ The following programs and modules are required to run The State Decoded, in add
 
 Here is the process of configuring the beta version of The State Decoded. (Most of these steps will be automated for the v1.0 release.)
 
+1. Upload the `htdocs` and `includes` directories to your web server (e.g., both within `/var/www/example.com/`), with `htdocs` serving as the web server's document root (e.g. `/var/www/example.com/htdocs/`).
+1. Rename `config-sample.inc.php` to `config.inc.php`.
+1. Rename `class.State-sample.inc.php` to `class.[Placename].inc.php` (e.g., `class.Kansas.inc.php`).
+1. Create a new MySQL database (e.g., `mysqladmin create statedecoded`) and make sure that the web server has access to it.
+1. Manually add a record to the MySQL table named `editions` for the instance of the legal code that you intend to import into The State Decoded. (e.g., `INSERT INTO editions SET year=2012;`)
+1. Go through `config.inc.php` and configure each setting.
+1. Customize the URL rewrites in `htdocs/.htaccess` to suit your own legal code's structure, using the provided file as a template. [See mod_rewrite instructions](http://httpd.apache.org/docs/current/mod/mod_rewrite.html) for details.
+1. Prepare the parser.
+	* Straightforward route: With all laws in [the State Decoded XML format](xml-format.html), copy all XML files to `htdocs/admin/xml/`.
+	* Custom route: Modify `class.[Statename].inc.php`—specifically `Parser::iterate`, `Parser::parse`, and `Parser::store`—to support the legal code that you will be importing. See "[How the Parser Works](parser.html)" for details.
+1. Password-protect the admin section by modifying the `htdocs/admin/.htaccess` and creating `htdocs/admin/`.htpasswd`. ([Sample instructions](http://www.seas.upenn.edu/cets/answers/auth-htpasswd.html).)
+1. Load `http://example.com/admin/` in your browser and click the “Parse“ button. Wait while the parser runs, which could require anywhere from 5–60 minutes to run, depending on the power of the server and the length of the legal code.
 
 
 # Advanced configuration
