@@ -32,7 +32,10 @@ Here is the process of configuring the beta version of The State Decoded. (Most 
 1. Create a new MySQL database (e.g., `mysqladmin create statedecoded`) and make sure that the web server has access to it.
 1. Manually add a record to the MySQL table named `editions` for the instance of the legal code that you intend to import into The State Decoded. (e.g., `INSERT INTO editions SET year=2012;`)
 1. Go through `config.inc.php` and configure each setting.
-
+1. Customize the URL rewrites in `htdocs/.htaccess` to suit your own legal code's structure, using the provided file as a template. [See mod_rewrite instructions](http://httpd.apache.org/docs/current/mod/mod_rewrite.html) for details.
+1. Prepare the parser.
+	* Straightforward route: With all laws in [the State Decoded XML format](xml-format.html), copy all XML files to `htdocs/admin/xml/`.
+	* Custom route: Modify `class.[Statename].inc.php`—specifically `Parser::iterate`, `Parser::parse`, and `Parser::store`—to support the legal code that you will be importing. See "[How the Parser Works](parser.html)" for details.
 
 
 # Advanced configuration
