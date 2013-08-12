@@ -37,7 +37,7 @@ Here is the process of configuring the beta version of The State Decoded. (Most 
 	* Straightforward route: With all laws in [the State Decoded XML format](xml-format.html), copy all XML files to `htdocs/admin/xml/`.
 	* Custom route: Modify `class.[Statename].inc.php`—specifically `Parser::iterate`, `Parser::parse`, and `Parser::store`—to support the legal code that you will be importing. See "[How the Parser Works](parser.html)" for details.
 1. Password-protect the admin section by modifying the `htdocs/admin/.htaccess` and creating `htdocs/admin/.htpasswd`. ([Sample instructions](http://www.seas.upenn.edu/cets/answers/auth-htpasswd.html).)
-1. Load `http://example.com/admin/` in your browser and click the "Parse" button. Wait while the parser runs, which could require anywhere from 5 to 60 minutes to run, depending on the power of the server and the length of the legal code.
+1. Load http://example.com/admin/ in your browser and click the Parse button. Wait while the parser runs, which could require anywhere from 5-60 minutes to run, depending on the power of the server and the length of the legal code.
 
 
 # Advanced configuration
