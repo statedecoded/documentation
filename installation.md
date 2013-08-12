@@ -26,13 +26,6 @@ The following programs and modules are required to run The State Decoded, in add
 
 Here is the process of configuring the beta version of The State Decoded. (Most of these steps will be automated for the v1.0 release.)
 
-1. Upload the `htdocs` and `includes` directories to your web server (e.g., both within `/var/www/example.com/`), with `htdocs` serving as the web server's document root (e.g. `/var/www/example.com/htdocs/`).
-1. Rename `config-sample.inc.php` to `config.inc.php`.
-1. Rename `class.State-sample.inc.php` to `class.[Placename].inc.php` (e.g., `class.Kansas.inc.php`).
-1. Create a new MySQL database (e.g., `mysqladmin create statedecoded`) and make sure that the web server has access to it.
-1. Manually add a record to the MySQL table named `editions` for the instance of the legal code that you intend to import into The State Decoded. (e.g., `INSERT INTO editions SET year=2012;`)
-1. Go through `config.inc.php` and configure each setting.
-
 
 
 # Advanced configuration
