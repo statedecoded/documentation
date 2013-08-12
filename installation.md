@@ -9,38 +9,18 @@ The following programs and modules are required to run The State Decoded, in add
 
 * [Make sure that Apache has `mod_rewrite` enabled](http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php) and that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles).
 * Make sure that [PHP's PDO extension](http://php.net/manual/en/book.pdo.php) has MySQL support included (which it probably does):
-* Red Hat/Fedora/CentOS: `sudo yum install php-mysql`
-* SuSE: `yast2 --install php5-mysql`
-* Debian/Ubuntu: `sudo apt-get install php5-mysql`
-* Windows: `add to php.ini: extension=php_pdo_mysql.dll`
+	* Red Hat/Fedora/CentOS: `sudo yum install php-mysql`
+	* SuSE: `yast2 --install php5-mysql`
+	* Debian/Ubuntu: `sudo apt-get install php5-mysql`
+	* Windows: `add to php.ini: extension=php_pdo_mysql.dll`
 * Make sure that you have `php-curl` installed (which you probably do):
-* Red Hat/Fedora/CentOS: `sudo yum install php-tidy`
-* SuSE: `yast2 --install php5-tidy`
-* Debian/Ubuntu: `sudo apt-get install php5-tidy`
-* Make sure that you have either `php-tidy` or `tidy` installed. Like such on Red Hat/Fedora/CentOS:
-
-
-```
-sudo yum install php-tidy
-```
-
-or
-
-```
-sudo yum install tidy
-```
-
-And like such on Debian/Ubuntu:
-
-```
-sudo apt-get install php5-tidy
-```
-
-or
-
-```
-sudo apt-get install tidy
-```
+	* Red Hat/Fedora/CentOS: `sudo yum install php-curl`
+	* SuSE: `yast2 --install php5-curl`
+	* Debian/Ubuntu: `sudo apt-get install php5-curl`
+* Make sure that you have either `php-tidy` or `tidy` installed:
+	* Red Hat/Fedora/CentOS: `sudo yum install php-tidy`
+	* SuSE: `yast2 --install php5-tidy`
+	* Debian/Ubuntu: `sudo apt-get install php5-tidy`
 
 # Basic configuration
 
