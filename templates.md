@@ -6,6 +6,9 @@ layout: default
 # Master template file
 Duplicate `includes/templates/default.inc.php` (to, say, `/includes/templates/kansas.inc.php`), then edit `TEMPLATE` in `includes/config.inc.php` to read `kansas` instead of `default`. `kansas.inc.php` is now your site's page template.
 
+# Images
+There is a [State Decoded Assets repository](https://github.com/statedecoded/statedecoded-assets/) that contains PSD files of page mockups and a favicon. These may be modified to customize the site's images as you see fit.
+
 # CSS
 You will be happiest if you do not CSS files directly. Instead, create a new CSS file (e.g., `/static/css/kansas.css`) and start it with the following line:
 
