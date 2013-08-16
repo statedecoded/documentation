@@ -5,7 +5,7 @@ layout: default
 
 # Overview
 
-`include.State-sample.inc.php` (which, if you have already installed The State Decoded, you’ve renamed to something like `include.Kansas.inc.php`) contains several hollowed-out methods and several populated methods. These are used to gather up the available raw materials of the laws in question (whether thousands of XML files, hundreds of web pages, or a single SGML file) and load them into The State Decoded's database in the format expected by the program.
+`class.State-sample.inc.php` (which, if you have already installed The State Decoded, you’ve renamed to something like `class.Kansas.inc.php`) contains several hollowed-out methods and several populated methods. These are used to gather up the available raw materials of the laws in question (whether thousands of XML files, hundreds of web pages, or a single SGML file) and load them into The State Decoded's database in the format expected by the program.
 
 Essentially, it works like this, as invoked within `parser-controller.inc.php`:
 
@@ -46,7 +46,114 @@ This method should require minimal customization. The data should have been well
 
 ## extract_definitions()
 
-When fed a section that contains a list of definitions, this atomizes them into a list of definitions, and then extracts the term being defined from each definition. Because every state stores these definitions differently (and each state can store them in different ways within the same legal code), this requires customization.
+When fed a section that contains a list of definitions, this atomizes them into a list of definitions, and then extracts the term being defined from each definition. Because every state stores these definitions differently (and each state can store them in different ways within the same legal code), this is likely to require some very simple customization.
+
+The two customizations to be made are to "scope indicators" and to "linking phrases."
+
+#### Scope indicators
+
+The first set of phrases to be customized are the scope indicators, stored as `$scope_indicators`. These are the phrases that indicate that a list of definitions is about to follow, and tell the reader what the scope of those definitions is. That is, do these terms apply only within this law? Or they apply to the whole chapter, part, title, article, etc? In context, these phrases might look like this:
+
+> The following terms are to be defined as such when used in this chapter:
+
+Or this: 
+
+> In this section, these terms shall be defined as follows:
+
+“Scope indicators” are the phrases that appear immediately prior to the name of the structural unit (e.g., "title," "chapter," etc.) to which the definitions apply. By default, scope indicators look like this:
+
+```
+$scope_indicators = array(	' are used in this ',
+							' when used in this ',
+							' for purposes of this ',
+							' for the purpose of this ',
+							' in this ',
+						);
+```
+
+Your legal code is unlikely to use this exact set of scope indicators. You'll need to read through a bunch of laws to get a handle on the candidate phrases, and list those here. Again, you must use the phrase that appears *immediately* prior to the name of the structural unit. If this does not fit how your legal code describes scope, then you'll need to make some modifications to `extract_definitions()`. Specifically this bit:
+
+```
+/*
+ * Now figure out the specified scope by examining the text that appears
+ * immediately after the scope indicator. Pull out as many characters as the
+ * length of the longest structural label.
+ */
+$phrase = substr( $paragraph, ($pos + strlen($scope_indicator)), $longest_label );
+```
+
+You'll just need to grab a different chunk of text surrounding `$scope_indicator`.
+
+If you get this wrong, it's not disasterous. If you include a scope indicator erroneously, almost certainly the only effect will be that the parser does a bit more work that it has to. If you fail to include a scope indicator, the definitions will still be detected, extracted, and stored, but their scope will be limited to the law in which they appear, as that is the most cautious default.
+
+
+#### Linking phrases
+
+The second and final set of phrases to be customized are the linking phrases, which is the word, words, or characters that connect a term to its definitions. For example:
+
+> “Person” shall include individuals, a trust, an estate, a partnership, an association, an order, a corporation, or any other legal or commercial entity.
+
+Or:
+
+> “Decree”: Shall be used interchangeably with “judgment,” and shall include orders or awards.
+
+In the former example, "shall include" is the linking phrase. In the latter, ": " is the linking phrase. (Admittedly, ": " is not a phrase, but it's also not a common construct within legal codes.)
+
+We use these linking phrases to separate a term from its definition. They're stored in an array, named `$linking_phrases`, which looks like this by default:
+
+```
+$linking_phrases = array(	' mean ',
+							' means ',
+							' shall include ',
+							' includes ',
+							' has the same meaning as ',
+							' shall be construed ',
+							' shall also be construed to mean ',
+						);
+```
+
+As with scope indicators, it is necessary to survey your legal code, to see how it links terms to their definitions, in order to populate your list. Odds aren't bad that it'll look rather like the default list.
+
+If your linking phrases list is overly broad, the only effect will be to imperceptably slow down The State Decoded's parser. If it's overly narrow, the effect will be to omit affected terms and definitions from your dictionary—The State Decoded will simply have no idea that it's looking at a definition.
+
+### Quotation marks
+
+There is a third attribute of which to be aware, although it's not a trivial customization like scope indicators and linking phrases. The State Decoded assumes that defined terms are contained within quotes, like this:
+
+> “Decree”: Shall include orders or awards.
+
+Those can be straight quotes or angled quotes (aka "smart quotes"), but the terms must be within quotes. We use quotation marks for two reasons. The first is to determine whether to examine a paragraph to see if it contains a definition. No quotes, no definition. The second is to determine which words are the term being defined.
+
+If your legal code does not insert defined terms within quotes, don't panic. While there is no friendly configuration option to address this, it's not a tough customization.
+
+The first change you'd need to make is to the conditional that checks whether a quotation mark is present within a paragraph:
+
+```
+/*
+ * All defined terms are surrounded by quotation marks, so let's use that as a criteria
+ * to round down our candidate paragraphs.
+ */
+if (strpos($paragraph, $quote_sample) !== FALSE)
+{
+```
+
+Best-case, there will be some other wrapper around each definition (e.g., `<b>Decree</b>: Shall include orders or awards.`), in which case you might turn the conditional into this:
+
+```
+if (strpos($paragraph, '<b>') !== FALSE)
+```
+
+Worst-case, you'd have this examine every single paragraph (e.g., `if (1 == 1)`, or just remove the `if(…){…}` wrapper entirely.)
+
+Then, throughout the contents of `if (strpos($paragraph, $quote_sample) !== FALSE) { … }`, you'd need to replace references to quotation marks to the applicable characters, including in the regular expression that extracts the defined term:
+
+```
+preg_match_all('/("|“)([A-Za-z]{1})([A-Za-z,\'\s-]*)([A-Za-z]{1})("|”)/', $paragraph, $terms);
+```
+Specifically, it's the two instances of `("|”)` that would need to be replaced with the new character or characters used to enclose the defined term.
+
+If there are no characters used to enclose the defined term, this is still very fixable, although a bit outside of the scope of this guide.
+
 
 ## extract_references()
 
