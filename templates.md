@@ -21,4 +21,4 @@ Then add your CSS declarations on top of that. This way, as subsequent releases 
 Better still, if you're comfortable with SCSS, do the same, but by creating a new SCSS file (e.g., `/static/scss/kansas.scss`) that leads off by importing `application.scss`, and then use that to generate `/static/css/application.css`.
 
 # Caching
-Note that if you're running Varnish, APC, or mod_pagespeed on your server, you'll need to clear the cache, both to remove cached pages with the old design and to remove the cached config options from `config.inc.php`.
+If you're running Varnish or mod_pagespeed on your server, you'll need to clear out your cache after making design changes. That's important for Varnish, which caches whole pages. mod_pagespeed should automatically expire its cached assets (Javascript, CSS, and images) when you change them, but if it doesn't, you'll need [flush its cache manually](https://developers.google.com/speed/pagespeed/module/system#flush_cache).
