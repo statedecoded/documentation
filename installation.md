@@ -42,6 +42,12 @@ Here is the process of configuring the beta version of The State Decoded. (Most 
 
 # Advanced configuration
 
+## Typekit typefaces
+
+The State Decoded has been designed to look best with three specific fonts: [FF Meta Serif Web Pro](https://typekit.com/fonts/ff-meta-serif-web-pro), [Adobe Jenson Pro](https://typekit.com/fonts/adobe-jenson-pro), and [Proxima Nova](https://typekit.com/fonts/proxima-nova). In order to use these fonts on the site, it's necessary to [pay for an account on Typekit](https://typekit.com/plans), Adobe's website font service. These three fonts require their "Portfolio" plan, which costs $4/month.
+
+If you do not sign up for Typekit, the site will work perfectly well. It simply won't look as nice as it otherwise would.
+
 ## Custom functions
 
 Within the `State` class, in `class.[Statename].inc.php`, there exist several methods, commented out, that can be written for your specific implementation, to provide additional functionality on your site. To implement these, it is only necessary to write the methods—all of the glue is already in place to include their output within the law object, return the data via the API, and display it on the law pages.

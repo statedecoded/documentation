@@ -84,3 +84,6 @@ If you're running a Varnish server, and you want The State Decoded to automatica
 
 # GOOGLE_ANALYTICS_ID
 If you want to track traffic stats with Google Analytics, provide your site's web property ID here.
+
+# TYPEKIT_ID
+The State Decoded can optionally render the site using several very nice, commercial fonts, calling them from Adobe's [Typekit](https://typekit.com/) service. This requires [paid registration at the "Portfolio" level](https://typekit.com/plans), which costs $4/month. The provided Typekit site ID goes here. See [the "Typekit typefaces" section of the installation guide](http://statedecoded.github.io/documentation/installation.html#typekit-typefaces) for details about where to find that ID.
