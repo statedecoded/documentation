@@ -81,10 +81,10 @@ Then there are the phrases that indicate an actual definition:
 * "mean"
 * "means"
 * "shall include"
-"includes"
-"has the same meaning as"
-"shall be construed"
-"shall also be construed to mean"
+* "includes"
+* "has the same meaning as"
+* "shall be construed"
+* "shall also be construed to mean"
 
 These are all terms that can connect a defined term to its definition. These are stored in the `$linking_phrases` array. If your legal code uses different terminology, you need only add its linking phrases to the list.
 
