@@ -32,17 +32,22 @@ What does this state call its laws?
 What is the prefix that indicates a section? In many states, this is `§`, but in others it might be `s `.
 
 ## EDITION_ID
-Establish which version of the code that's in effect sitewide. This is the database ID in the `editions` table.
+Establish which version of the code that's in effect sitewide. This is the database ID in the `editions` table. (On a new installation, this will always be `1`.)
 
 ## EDITION_YEAR
-Establish which version of the code that's in effect sitewide. This is the label for the present revision.
+Establish which version of the code that's in effect sitewide. This is the label for the present revision. Although it's titled "year," if setting up a site for a code that is updated more frequently than annually, another terse label will suffice here (e.g., `2015-02-01` or `2014-Q1`).
 
 ## INCLUDES_REPEALED
-Does this state's code include laws that have been repealed formally, and that are marked as such? This will suppress their display, so that visits don't have to wade through nearly empty, repealed
-laws.
+Does this state's code include laws that have been repealed formally, and that are marked as such? This will suppress their display, so that visits don't have to wade through nearly empty, repealed laws.
 
 ## PDO_DSN
-[PHP Data Object's Data Source Name](http://php.net/manual/en/ref.pdo-mysql.connection.php)—tells PHP how to connect to the database.
+[PHP Data Object's Data Source Name](http://php.net/manual/en/ref.pdo-mysql.connection.php)—tells PHP how to connect to the MySQL database. (Only MySQL will work.) This looks like this:
+
+~~~
+mysql:dbname=statedecoded;host=localhost;charset=utf8
+~~~
+
+`dbname` is the name of the database that you created for The State Decoded. `host` is the name of the database server. This will most often be `localhost`—check with your host for details, if that doesn't work. And `charset` must always be `utf8`.
 
 ## PDO_USERNAME
 The database username.
@@ -66,7 +71,7 @@ Map the above PCRE's stanzas to its corresponding hierarchical labels. It's OK t
 The path, relative to the webroot, to an error page to be displayed if the database connection is not available. (Like the fail whale.) Do not begin this path with a slash. If this is undefined, a bare database connection error will be displayed.
 
 ## EMAIL_ADDRESS
-When there is cause to send an e-mail (e.g., API registration), what "From" address should be used?
+When there is cause for the website to send an e-mail (e.g., API registration), what "From" address should be used?
 
 ## EMAIL_NAME
 When sending e-mail, what name should appear in the "From" field?
