@@ -15,7 +15,7 @@ On the other hand, if your tags are good-not-great, then you'd want to decrease 
 
 This is done by appending `^5` (to weight tags at 500% that of other fields) or `^.1` (to weight tags at just 10% of other fields) after `tags` within the `<str name="…">` tag, e.g.:
 
-```
+~~~
 <str name="qf">
 				 catch_line
 					   tags^5
@@ -30,4 +30,4 @@ This is done by appending `^5` (to weight tags at 500% that of other fields) or 
 					   term
 				 definition
 </str>
-```
+~~~

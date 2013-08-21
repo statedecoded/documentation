@@ -102,7 +102,7 @@ Many legal codes use coherent, compact, unique citation methods, assigning every
 
 The first step to doing this is to copy the `replace_sections()` method found within `includes/class.Autolinker.inc.php` and paste it into your `class.[Statename].inc.php` file, within a `State_Autolinker` class, like such:
 
-```
+~~~
 class State_Autolinker extends Autolinker
 {
   function replace_sections()
@@ -110,6 +110,6 @@ class State_Autolinker extends Autolinker
         [paste method contents here]
     }
 }
-```
+~~~
 
 The function of the existing `replace_sections()` method is to process a single match from `SECTION_PCRE`. Normally this is as simple as `return '<a class="law" href="/'.$match.'/">'.$match.'</a>';`, because the section number is the same as the URL slug. But for something like, say, [the Maryland Code's citations](https://github.com/statedecoded/law-identifier/blob/master/Maryland.md), it's necessary to be able to generate a URL for "§ 9-301 of the State Government Article" (say, `sg-9-301`). That might mean maintaining a lookup table within `replace_sections()` to turn every article name ("State government Article") into a URL prefix ("sg-"). Methods will vary between legal codes.

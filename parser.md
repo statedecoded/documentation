@@ -9,14 +9,14 @@ layout: default
 
 Essentially, it works like this, as invoked within `parser-controller.inc.php`:
 
-```
+~~~
 while ($section = $parser->iterate())
 {
 	$parser->section = $section;
 	$parser->parse();
 	$parser->store();
 }
-```
+~~~
 
 `iterate()` retrieves each law, one by one, from the source material, and hands each one of them off to `parse()`. The job of `parse()` is to turn that raw material into a normalized PHP object, which is then passed to `store()`, which puts that data into the database.
 
@@ -62,25 +62,25 @@ Or this:
 
 “Scope indicators” are the phrases that appear immediately prior to the name of the structural unit (e.g., "title," "chapter," etc.) to which the definitions apply. By default, scope indicators look like this:
 
-```
+~~~
 $scope_indicators = array(	' are used in this ',
 							' when used in this ',
 							' for purposes of this ',
 							' for the purpose of this ',
 							' in this ',
 						);
-```
+~~~
 
 Your legal code is unlikely to use this exact set of scope indicators. You'll need to read through a bunch of laws to get a handle on the candidate phrases, and list those here. Again, you must use the phrase that appears *immediately* prior to the name of the structural unit. If this does not fit how your legal code describes scope, then you'll need to make some modifications to `extract_definitions()`. Specifically this bit:
 
-```
+~~~
 /*
  * Now figure out the specified scope by examining the text that appears
  * immediately after the scope indicator. Pull out as many characters as the
  * length of the longest structural label.
  */
 $phrase = substr( $paragraph, ($pos + strlen($scope_indicator)), $longest_label );
-```
+~~~
 
 You'll just need to grab a different chunk of text surrounding `$scope_indicator`.
 
@@ -101,7 +101,7 @@ In the former example, "shall include" is the linking phrase. In the latter, ": 
 
 We use these linking phrases to separate a term from its definition. They're stored in an array, named `$linking_phrases`, which looks like this by default:
 
-```
+~~~
 $linking_phrases = array(	' mean ',
 							' means ',
 							' shall include ',
@@ -110,7 +110,7 @@ $linking_phrases = array(	' mean ',
 							' shall be construed ',
 							' shall also be construed to mean ',
 						);
-```
+~~~
 
 As with scope indicators, it is necessary to survey your legal code, to see how it links terms to their definitions, in order to populate your list. Odds aren't bad that it'll look rather like the default list.
 
@@ -128,28 +128,29 @@ If your legal code does not insert defined terms within quotes, don't panic. Whi
 
 The first change you'd need to make is to the conditional that checks whether a quotation mark is present within a paragraph:
 
-```
+~~~
 /*
  * All defined terms are surrounded by quotation marks, so let's use that as a criteria
  * to round down our candidate paragraphs.
  */
 if (strpos($paragraph, $quote_sample) !== FALSE)
 {
-```
+~~~
 
 Best-case, there will be some other wrapper around each definition (e.g., `<b>Decree</b>: Shall include orders or awards.`), in which case you might turn the conditional into this:
 
-```
+~~~
 if (strpos($paragraph, '<b>') !== FALSE)
-```
+~~~
 
 Worst-case, you'd have this examine every single paragraph (e.g., `if (1 == 1)`, or just remove the `if(…){…}` wrapper entirely.)
 
 Then, throughout the contents of `if (strpos($paragraph, $quote_sample) !== FALSE) { … }`, you'd need to replace references to quotation marks to the applicable characters, including in the regular expression that extracts the defined term:
 
-```
+~~~
 preg_match_all('/("|“)([A-Za-z]{1})([A-Za-z,\'\s-]*)([A-Za-z]{1})("|”)/', $paragraph, $terms);
-```
+~~~
+
 Specifically, it's the two instances of `("|”)` that would need to be replaced with the new character or characters used to enclose the defined term.
 
 If there are no characters used to enclose the defined term, this is still very fixable, although a bit outside of the scope of this guide.
@@ -163,9 +164,9 @@ This method should not require any customization. Its job is to scan each sectio
 
 Turns the often-cryptic history sections within nearly every law into standardized data. For instance:
 
-```
+~~~
 1995, c. 837, § 18.2-340.32; 1997, cc. 777, 838
-```
+~~~
 
 This tell us that in the 1995 Acts of Assembly, the instant law was modified (or perhaps created), as recorded in chapter 837, and the law was then known as § 18.2-340.32, though it as since been renumbered. And then in the 1997 Acts of Assembly, it was modified twice, in chapters 777 and 838. The job of `extract_history()` is to turn this data into an object, rather than storing it as a single string of text. Inevitably, it will require extensive modification to work with each state's unique method of storing history data, although this is both technically and logistically straightforward.
 

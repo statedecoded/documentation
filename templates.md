@@ -12,9 +12,9 @@ There is a [State Decoded Assets repository](https://github.com/statedecoded/sta
 # CSS
 You will be happiest if you do not CSS files directly. Instead, create a new CSS file (e.g., `/static/css/kansas.css`) and start it with the following line:
 
-```html
+~~~
 @import url("application.css");
-```
+~~~
 
 Then add your CSS declarations on top of that. This way, as subsequent releases of The State Decoded add modify the bundled CSS to add new functionality, you will gain that functionality in your own design. Then, in your template (e.g., `includes/templates/kansas.inc.php`), have it load `/static/css/kansas.css` instead of `/static/css.application.css`.
 
