@@ -60,7 +60,11 @@ Method `official_url()`. Turns a law's section number into the URL for the law o
 
 ### Translate history
 
-Method `translate_history()`. Turns a law's history text into a plain-English version of the same text. For example, `Code 1950, c. 118; 1972, c. 825` might become `This law was first codified in 1950, as recorded in chapter 118 of the Acts of Assembly, and was amended in 1972, by chapter 825.` The translated history will be displayed after each law on the law page, and within the API's law method.
+Method `translate_history()`. Turns a law's history text into a plain-English version of the same text. For example, `Code 1950, c. 118; 1972, c. 825` might become:
+
+> This law was first codified in 1950, as recorded in chapter 118 of the Acts of Assembly, and was amended in 1972, by chapter 825.
+
+The translated history will be displayed after each law on the law page, and will be provided within the API's law method.
 
 ### Citations
 
