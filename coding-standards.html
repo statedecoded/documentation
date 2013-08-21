@@ -9,28 +9,22 @@ layout: default
 <li>Wrap at 100 columns, unless the result would be confusing.</li>
 <li>Variable names in lowercase (e.g., <code>$section_number</code>), multiple words separated with underscores, never camelCase or StudlyCaps.</li>
 <li>Braces on a new line:
-<pre><code>
-if ($x == $y)
+<pre><code>if ($x == $y)
 {
   ...
-}
-</code></pre></li>
+}</code></pre></li>
 <li>Don't use terse expressions (e.g., the ternary operator).</li>
 <li>The results of conditionals should always go within braces, rather than expressed on a single line, e.g.:
-<pre><code>
-if ($a == TRUE)
+<pre><code>if ($a == TRUE)
 {
   echo 'true';
-}
-</code></pre></li>
+}</code></pre></li>
 <li>Spaces before conditionals (`if ($a == TRUE)`, not `if($a == TRUE)`)</li>
 <li>Boolean terms in all caps (e.g., <code>TRUE</code>).</li>
 <li>Comments as complete sentences, offset like such:
-<pre><code>
-/*
+<pre><code>/*
  * Example comment here.
- */
-</pre></code></li>
+ */</pre></code></li>
 <li>Comments preceded with <code>//</code> indicate temporary, working comments, generally indicating problems.</li>
 <li>If a bit of code is anything short of perfectly obvious, provide a comment explaining it.</li>
 <li>`echo`, not `print`</li>
