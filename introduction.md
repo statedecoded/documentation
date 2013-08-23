@@ -3,6 +3,12 @@ title: An Introduction to The State Decoded
 layout: default
 ---
 
+# Contents
+{:.no_toc}
+
+* Will be replaced with the ToC, excluding the "Contents" header
+{:toc}
+
 # What It Does
 
 The State Decoded is a program that takes structured legal data and generates a website, an API, and bulk downloads based on that legal data. It was designed for U.S. state and municipal legal codes, but it works just as nicely for regulations, contracts, even EULAs. It interfaces with court decisions, legislation, and arbitrary types of connected legal data.

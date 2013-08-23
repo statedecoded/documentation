@@ -3,6 +3,12 @@ title: Templates
 layout: default
 ---
 
+# Contents
+{:.no_toc}
+
+* Will be replaced with the ToC, excluding the "Contents" header
+{:toc}
+
 # Master template file
 Duplicate `includes/templates/default.inc.php` (to, say, `/includes/templates/kansas.inc.php`), then edit `TEMPLATE` in `includes/config.inc.php` to read `kansas` instead of `default`. `kansas.inc.php` is now your site's page template.
 
