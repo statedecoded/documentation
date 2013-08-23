@@ -3,6 +3,12 @@ title: Installation
 layout: default
 ---
 
+# Contents
+{:.no_toc}
+
+* Will be replaced with the ToC, excluding the "Contents" header
+{:toc}
+
 # Requirements
 
 The following programs and modules are required to run The State Decoded, in addition to a basic LAMP/WAMP stack (MySQL 5+, PHP 5.2+, Apache 2+). They are almost certainly already installed on any standard server. The State Decoded’s installer will automatically check to see whether these are installed.
