@@ -7,9 +7,6 @@ layout: default
 ## BASE_PATH
 The directory that contains the web root (e.g., `/htdocs/`) and the include files (e.g. `/includes/`).
 
-## INCLUDE_PATH
-The path to the files found in `/includes/`.
-
 ## WEB_ROOT
 The path to the files found in `/htdocs/`.
 
@@ -17,7 +14,7 @@ The path to the files found in `/htdocs/`.
 The file in the `/includes/` directory that contains functions custom to this installation.
 
 ## TEMPLATE
-Which template to use.
+Which template file to use. (These are the files found in `/includes/templates/`.)
 
 ## SITE_TITLE
 What is the title of the website?
@@ -26,19 +23,19 @@ What is the title of the website?
 What is the name of the place that these laws govern?
 
 ## LAWS_NAME
-What does this state call its laws?
+What does this place call its laws? e.g., `The Kansas Statutes`, `The Code of Virginia`, etc.
 
 ## SECTION_SYMBOL
-What is the prefix that indicates a section? In many states, this is `§`, but in others it might be `s `.
+What is the prefix that indicates a section? In many states, this is `§`, but in others it might be `s `. This would be formatted as `§ 1.23-45` or `s. 123`.
 
 ## EDITION_ID
 Establish which version of the code that's in effect sitewide. This is the database ID in the `editions` table. (On a new installation, this will always be `1`.)
 
 ## EDITION_YEAR
-Establish which version of the code that's in effect sitewide. This is the label for the present revision. Although it's titled "year," if setting up a site for a code that is updated more frequently than annually, another terse label will suffice here (e.g., `2015-02-01` or `2014-Q1`).
+Establish which version of the code that's in effect sitewide. This is the label for the present revision. Although the word "year" appears in the title, if setting up a site for a code that is updated more frequently than annually, another terse label will suffice here (e.g., `2015-02-01` or `2014-Q1`). This label will appear in URLs.
 
 ## INCLUDES_REPEALED
-Does this state's code include laws that have been repealed formally, and that are marked as such? This will suppress their display, so that visits don't have to wade through nearly empty, repealed laws.
+Does this state's code include laws that have been repealed formally, and that are marked as such? This will suppress their display, so that visits don't have to wade through empty, repealed laws. If your legal code isn't full of vast wastelands of long-abandoned chapters, then you can leave this set to `FALSE`.
 
 ## PDO_DSN
 [PHP Data Object's Data Source Name](http://php.net/manual/en/ref.pdo-mysql.connection.php)—tells PHP how to connect to the MySQL database. (Only MySQL will work.) This looks like this:
