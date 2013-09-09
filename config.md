@@ -4,18 +4,6 @@ layout: default
 ---
 # Configuration Options
 
-## BASE_PATH
-The directory that contains the web root (e.g., `/htdocs/`) and the include files (e.g. `/includes/`).
-
-## WEB_ROOT
-The path to the files found in `/htdocs/`.
-
-## CUSTOM_FUNCTIONS
-The file in the `/includes/` directory that contains functions custom to this installation.
-
-## TEMPLATE
-Which template file to use. (These are the files found in `/includes/templates/`.)
-
 ## SITE_TITLE
 What is the title of the website?
 
@@ -28,6 +16,30 @@ What does this place call its laws? e.g., `The Kansas Statutes`, `The Code of Vi
 ## SECTION_SYMBOL
 What is the prefix that indicates a section? In many states, this is `§`, but in others it might be `s `. This would be formatted as `§ 1.23-45` or `s. 123`.
 
+## WEB_ROOT
+The path to the contents of the website, e.g. the location of `index.php`.
+
+## IMPORT_DATA_DIR
+The directory in which the importer can find the laws to be imported.
+
+## CUSTOM_FUNCTIONS
+The file in the `/includes/` directory that contains functions custom to this installation. By convention, this is named for the place that these laws govern, e.g. `class.Kansas.inc.php`.
+
+## TEMPLATE_DIR
+The directory in which templates are found.
+
+## THEME_NAME
+The name of the theme that's in use.
+
+## THEME_DIR
+The filesystem path to the directory that contains the theme. This defaults to `TEMPATE_DIR/THEME_NAME` (e.g., `/var/www/example.com/themes/StateDecoded2013/`.)
+
+## THEME_WEB_PATH
+The public URL of the directory that contains the theme (e.g., `http://example.com/themes/StateDecoded2013/`.)
+
+## CURRENT_API_VERSION
+Define the default version of the API to send requests to, if a version isn't othewise specified.
+
 ## EDITION_ID
 Establish which version of the code that's in effect sitewide. This is the database ID in the `editions` table. (On a new installation, this will always be `1`.)
 
@@ -36,6 +48,9 @@ Establish which version of the code that's in effect sitewide. This is the label
 
 ## INCLUDES_REPEALED
 Does this state's code include laws that have been repealed formally, and that are marked as such? This will suppress their display, so that visits don't have to wade through empty, repealed laws. If your legal code isn't full of vast wastelands of long-abandoned chapters, then you can leave this set to `FALSE`.
+
+## LONG_LAW_URLS
+Should we use short URLs or long URLs for laws? Short URLs are the default (e.g., `http://example.com/12.3-45:67/`), but if laws have non-unique identifiers, then you'll need to use long URLs (e.g. `http://example.com/56/21/12.3-45:67/`), which are URLs that incorporate the hierarchical structures (e.g., laws, titles, parts, etc.) that contain each law.
 
 ## PDO_DSN
 [PHP Data Object's Data Source Name](http://php.net/manual/en/ref.pdo-mysql.connection.php)—tells PHP how to connect to the MySQL database. (Only MySQL will work.) This looks like this:
