@@ -13,7 +13,7 @@ layout: default
 
 `class.State-sample.inc.php` (which, if you have already installed The State Decoded, you’ve renamed to something like `class.Kansas.inc.php`) contains several hollowed-out methods and several populated methods. These are used to gather up the available raw materials of the laws in question (whether thousands of XML files, hundreds of web pages, or a single SGML file) and load them into The State Decoded's database in the format expected by the program.
 
-Essentially, it works like this, as invoked within `parser-controller.inc.php`:
+Essentially, it works like this, as invoked within `class.ParserController.inc.php`:
 
 ~~~
 while ($section = $parser->iterate())
