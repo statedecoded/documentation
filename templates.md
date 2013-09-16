@@ -30,4 +30,4 @@ Better still, if you're comfortable with SCSS, do the same, but by creating a ne
 If you're running Varnish or mod_pagespeed on your server, you'll need to clear out your cache after making design changes. That's important for Varnish, which caches whole pages. mod_pagespeed should automatically expire its cached assets (Javascript, CSS, and images) when you change them, but if it doesn't, you'll need [flush its cache manually](https://developers.google.com/speed/pagespeed/module/system#flush_cache).
 
 # Home Page Layout
-If you do not have video to feature on your site's home page, you can simply remove the entire `<div class="nest video">[…]</div>` stanza from `htdocs/index.php`.
+If you have an introductory video that you want to display on the home page, uncomment the `<div class="nest video">[…]</div>` stanza from `htdocs/home.php` and modify appropriately to link to your video.
