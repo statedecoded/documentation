@@ -14,7 +14,6 @@ layout: default
 {
   ...
 }</code></pre></li>
-<li>Don't use terse expressions (e.g., the ternary operator).</li>
 <li>Save for very terse (>~5 lines?) clauses, use an extra carriage return after an opening brace and before a closing brace:
 <pre><code>while ($reference = $statement->fetch(PDO::FETCH_OBJ))
 {
@@ -33,7 +32,7 @@ layout: default
 {
   echo 'true';
 }</code></pre></li>
-<li>Spaces before conditionals (`if ($a == TRUE)`, not `if($a == TRUE)`)</li>
+<li>Spaces before conditionals (<code>if ($a == TRUE)</code>, not <code>if($a == TRUE)</code>)</li>
 <li>Boolean terms in all caps (e.g., <code>TRUE</code>).</li>
 <li>Comments as complete sentences, offset like such:
 <pre><code>/*
@@ -41,6 +40,6 @@ layout: default
  */</pre></code></li>
 <li>Comments preceded with <code>//</code> indicate temporary, working comments, generally indicating problems.</li>
 <li>If a bit of code is anything short of perfectly obvious, provide a comment explaining it.</li>
-<li>`echo`, not `print`</li>
-<li>HTML 5</li>
+<li>Use <code>echo</code>, not <code>print</code>.</li>
+<li>HTML 5, meaning self-terminating tags (e.g., <code>&lt;br /&gt;</code></li>
 </ul>
