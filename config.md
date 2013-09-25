@@ -68,7 +68,7 @@ The database username.
 The database password.
 
 ## GLOBAL_DEFINITIONS
-Specify the structural identifier ancestry for the unit of the code that contains definitions of terms that are used throughout the code, and thus should have a global scope. Separate each identifier with a comma. If all global definitions are found in Title 15A, Part BD, Chapter 16.2, that would be identified as '15A,BD,16.2'. If all global definitions are found in Article 36, Section 105, that would be identified as '36,105'. This must be the COMPLETE PATH to the container for global definitions, and not a standard citation.
+Specify the structural identifier ancestry for the unit of the code that contains definitions of terms that are used throughout the code, and thus should have a global scope. Separate each identifier with a comma. If all global definitions are found in Title 15A, Part BD, Chapter 16.2, that would be identified as `15A,BD,16.2`. If all global definitions are found in Article 36, Section 105, that would be identified as `36,105`. This must be the *complete path* to the container for global definitions, and not a standard citation.
 
 Not all legal codes need this. This only needs to be specified for those legal codes that list globally applicable definitions but that don't specify within the list of definitions that they are globally applicable. For instance, a legal code might set aside a chapter to list all global definitions, and use the first law in the chapter to say "all following laws apply globally," and then have 100 more laws, each containing a single definition. This is a legal code for which this configuration option is necessary.
 
