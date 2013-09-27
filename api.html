@@ -8,10 +8,10 @@ layout: default
 <ul>
 <li><a href="#how-to">How to...</a></li>
 <li><a href="#methods">Methods</a>
-<ul><li><a href="#method-law">Law</a></li>
-<li><a href="#method-structure">Structure</a></li>
-<li><a href="#method-dictionary">Dictionary</a></li></ul></li>
+<ul><li><a href="#method-dictionary">Dictionary</a></li>
+<li><a href="#method-law">Law</a></li>
 <li><a href="#method-search">Search</a></li>
+<li><a href="#method-structure">Structure</a></li></ul></li>
 <li><a href="#errors">Errors</a></li>
 </ul>
 
@@ -46,6 +46,122 @@ layout: default
 <p>Append <code>&amp;fields=field1,field2,field3</code> to the query, substituting the desired field names for "field1," etc.</p>
 
 <h1><a id="methods"></a> Methods</h1>
+
+<h2><a id="method-dictionary"></a> Dictionary</h2>
+
+<p>When provided with a term, returns all definitions for that term found within the code.</p>
+
+<h3>Query format</h3>
+
+<p><code>
+http://vacode.org/api/dictionary/[word_or_phrase]?key=[api_key]
+</code></p>
+
+<h3>Optional parameters</h3>
+
+<h4>Section number</h4>
+
+<p>Pass the parameter <code>section</code> and a section number, and get only the definition of the term that is relevant to that law. (Most terms have a defined scope of a given structural unit or law.) <em>N.B.: Because only one definition is returned, rather than providing an array of definitions, just a single definition’s fields are returned. They are not stored as the lone element in an array, but are at the top level of the JSON.</em></p>
+
+<p><code>
+http://vacode.org/api/dictionary/person?section=12.1-14&amp;key=[api_key]
+</code></p>
+
+<h4>Callback</h4>
+
+<p>Pass the parameter <code>callback</code> and a callback string to have results returned as JSONP.</p>
+
+<p><code>
+http://vacode.org/api/dictionary/[word_or_phrase]?key=[api_key]&amp;callback=d9f3lIb013
+</code></p>
+
+<h4>Specified fields</h4>
+
+<p>Pass the parameter <code>fields</code> and a comma-separated listing of fields to limit the response to those fields.</p>
+
+<p><code>
+http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=definition
+</code></p>
+
+<h3>Fields</h3>
+
+<p><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody></p>
+
+<tr>
+<td>term</td>
+<td>string</td>
+<td>The term that is being defined.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>definition</td>
+<td>string</td>
+<td>The text of the definition.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>scope</td>
+<td>string</td>
+<td>How broadly that this definition applies.</td>
+<td>This is based on the structural unit labels, which vary between implementations. Possible values might be <code>title</code>, <code>chapter</code>, <code>part</code>, or others. A definition that applies to just one law would have a value of <code>section</code>, while a definition that applies to the whole code would have a value of <code>global</code>.</td>
+</tr>
+
+<tr>
+<td>section_number</td>
+<td>string</td>
+<td>The unique identifier for the section in which the definition appears.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>url</td>
+<td>string</td>
+<td>The URL of the section in which the definition appears.</td>
+<td></td>
+</tr>
+
+<tr>
+<td>formatted</td>
+<td>string</td>
+<td>The definition, with display-ready formatting and a citation.</td>
+<td>This is the same as the content of <code>definition</code>, with typographic niceties and a parenthetical citation.</td>
+</tr>
+
+<tr>
+<td>api_version</td>
+<td>integer</td>
+<td>The version of the API that is returning this result.</td>
+<td></td>
+</tr>
+
+<h3>Sample query and response</h3>
+
+<p><code>
+http://vacode.org/api/dictionary/person?section=12.1-14&amp;key=[api_key]
+</code></p>
+
+<pre><code>
+{
+    "term": "person",
+    "definition": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof.",
+    "section_number": "1-230",
+    "scope": "global",
+    "url": "http://vacode.org/1-230/",
+    "formatted": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof. (&lt;a href=\"http://vacode.org/1-230/\"&gt;§&amp;nbsp;1-230&lt;\/a&gt;)",
+    "api_version": "1.0"
+}
+</code></pre>
 
 <h2><a id="method-law"></a> Law</h2>
 
@@ -193,16 +309,16 @@ http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,u
 </table>
 
 <p></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>ancestry</td>
 <td>array</td>
 <td>Contains a subsection for each hierarchically nested structural unit that contains this law.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td colspan="4"></p>
 
 <table>
@@ -241,16 +357,16 @@ http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,u
 </table>
 
 <p></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>structure_contents</td>
 <td>array</td>
 <td>Contains a subsection for each law that is part of the immediate structural unit (siblings of the requested section).</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td colspan="4"></p>
 
 <table>
@@ -300,16 +416,16 @@ http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,u
 </table>
 
 <p></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>previous_section</td>
 <td>array</td>
 <td>The prior law within the containing structural unit, as ordered.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td colspan="4"></p>
 
 <table>
@@ -359,16 +475,16 @@ http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,u
 </table>
 
 <p></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>next_section</td>
 <td>array</td>
 <td>The following law within the containing structural unit, as ordered.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td colspan="4"></p>
 
 <table>
@@ -418,44 +534,44 @@ http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,u
 </table>
 
 <p></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>metadata</td>
 <td>array, <em>or null</em></td>
 <td>Contains all metadata about this law that is stored separately in the metadata table.</td>
 <td>By default, this contains nothing, but any State Decoded implementation that wants to store additional metadata about laws—data beyond the structure otherwise described here—would emit that metadata here.</td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>court_decisions</td>
 <td>array, <em>or null</em></td>
 <td>Every court decision that cites this law.</td>
 <td>Only available within State Decoded implementations that have chosen to ingest court rulings.</td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>official_url</td>
 <td>string, <em>or null</em></td>
 <td>The URL for this law on the official website for this legal code.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>history_text</td>
 <td>string, <em>or null</em></td>
 <td>A narrative version of the <code>history</code> field.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>references</td>
 <td>array</td>
 <td>A listing of all other laws that refer to this one.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td colspan="4"></p>
 
 <table>
@@ -491,16 +607,16 @@ http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,u
 </table>
 
 <p></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>related</td>
 <td>array</td>
 <td>A list of all other laws that are have been determined through lexical analysis to be similar to this one.</td>
 <td>This list is generated by <a href="http://wiki.apache.org/solr/MoreLikeThis">Solr's MoreLikeThis handler</a>.</td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td colspan="4"></p>
 
 <table>
@@ -536,30 +652,30 @@ http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,u
 </table>
 
 <p></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>amendment_years</td>
 <td>array</td>
 <td>A list of every year in which this law was amended.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>url</td>
 <td>string</td>
 <td>The public (non-API) URL for this law.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>citation</td>
 <td>array</td>
 <td>A list of formal citation methods for this law.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td colspan="4"></p>
 
 <table>
@@ -580,14 +696,14 @@ http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,u
 </table>
 
 <p></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>api_version</td>
 <td>integer</td>
 <td>The version of the API that is returning this result.</td>
 <td></td>
-</tr></p>
+</tr>
 
 <p></tbody>
 </table></p>
@@ -921,7 +1037,7 @@ http://vacode.org/api/law/15.2-627?key=[api_key]
         "official": "Va. Code §&amp;nbsp;15.2-627",
         "universal": "VA Code §&amp;nbsp;15.2-627"
     },
-    "api_version": "0.1"
+    "api_version": "1.0"
 }
 </code></pre>
 
@@ -1023,16 +1139,16 @@ http://vacode.org/api/structure/[identifier]?key=[api_key]&amp;fields=catch_line
 </table>
 
 <p></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>children</td>
 <td>array</td>
 <td>A list of every structural unit that is a child of the requested one.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td colspan="4"></p>
 
 <table>
@@ -1078,16 +1194,16 @@ http://vacode.org/api/structure/[identifier]?key=[api_key]&amp;fields=catch_line
 </table>
 
 <p></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td>laws</td>
 <td>array</td>
 <td>A list of every law that is a child of the requested structural unit.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
 <td colspan="4"></p>
 
 <table>
@@ -1139,12 +1255,12 @@ http://vacode.org/api/structure/[identifier]?key=[api_key]&amp;fields=catch_line
 <p></tr>
 </td></p>
 
-<p><tr>
+<tr>
 <td>api_version</td>
 <td>integer</td>
 <td>The version of the API that is returning this result.</td>
 <td></td>
-</tr></p>
+</tr>
 
 <p></tbody>
 </table></p>
@@ -1274,7 +1390,8 @@ http://vacode.org/api/structure/18.2?key=[api_key]
             "api_url": "http://vacode.org/api/structure/18.2/13/"
         }
     },
-    "laws": false
+    "laws": false,
+    "api_version": "1.0"
 }
 </code></pre>
 
@@ -1319,9 +1436,8 @@ http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=result
 </thead>
 <tbody>
 
-<td>The term that is being defined.</td>
-</tr></p>
 <tr>
+<td>results</td>
 <td>object</td>
 <td>A list of the results of this search.</td>
 <td>Limited to the first 100 results.</td>
@@ -1391,6 +1507,7 @@ http://vacode.org/api/search/person?key=[api_key]
 {
 	"results": {
 		"section_number": "1-230",
+		"catch_line": "Person.",
 		"text": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof.",
 		"url": "http://vacode.org/1-230/",
 		"score": "5.6"
