@@ -11,6 +11,7 @@ layout: default
 <ul><li><a href="#method-law">Law</a></li>
 <li><a href="#method-structure">Structure</a></li>
 <li><a href="#method-dictionary">Dictionary</a></li></ul></li>
+<li><a href="#method-search">Search</a></li>
 <li><a href="#errors">Errors</a></li>
 </ul>
 
@@ -1277,25 +1278,17 @@ http://vacode.org/api/structure/18.2?key=[api_key]
 }
 </code></pre>
 
-<h2><a id="method-dictionary"></a> Dictionary</h2>
+<h2><a id="method-search"></a> Search</h2>
 
-<p>When provided with a term, returns all definitions for that term found within the code.</p>
+<p>When provided with a term, returns all uses of that term within the code, sorted by relevance, limited to the top 100 results.</p>
 
 <h3>Query format</h3>
 
 <p><code>
-http://vacode.org/api/dictionary/[word_or_phrase]?key=[api_key]
+http://vacode.org/api/search/[word_or_phrase]?key=[api_key]
 </code></p>
 
 <h3>Optional parameters</h3>
-
-<h4>Section number</h4>
-
-<p>Pass the parameter <code>section</code> and a section number, and get only the definition of the term that is relevant to that law. (Most terms have a defined scope of a given structural unit or law.) <em>N.B.: Because only one definition is returned, rather than providing an array of definitions, just a single definition’s fields are returned. They are not stored as the lone element in an array, but are at the top level of the JSON.</em></p>
-
-<p><code>
-http://vacode.org/api/dictionary/person?section=12.1-14&amp;key=[api_key]
-</code></p>
 
 <h4>Callback</h4>
 
@@ -1307,15 +1300,15 @@ http://vacode.org/api/dictionary/[word_or_phrase]?key=[api_key]&amp;callback=d9f
 
 <h4>Specified fields</h4>
 
-<p>Pass the parameter <code>fields</code> and a comma-separated listing of fields to limit the response to those fields.</p>
+<p>Pass the parameter <code>fields</code> and a comma-separated list of fields to limit the response to those fields.</p>
 
 <p><code>
-http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=definition
+http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=results
 </code></p>
 
 <h3>Fields</h3>
 
-<p><table>
+<table>
 <thead>
 <tr>
 <th>Name</th>
@@ -1324,72 +1317,86 @@ http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=defini
 <th>Notes</th>
 </tr>
 </thead>
-<tbody></p>
+<tbody>
 
-<p><tr>
-<td>term</td>
-<td>string</td>
 <td>The term that is being defined.</td>
-<td></td>
 </tr></p>
+<tr>
+<td>object</td>
+<td>A list of the results of this search.</td>
+<td>Limited to the first 100 results.</td>
+</tr>
 
-<p><tr>
-<td>definition</td>
-<td>string</td>
-<td>The text of the definition.</td>
-<td></td>
-</tr></p>
+<tr>
 
-<p><tr>
-<td>scope</td>
-<td>string</td>
-<td>How broadly that this definition applies.</td>
-<td>This is based on the structural unit labels, which vary between implementations. Possible values might be <code>title</code>, <code>chapter</code>, <code>part</code>, or others. A definition that applies to just one law would have a value of <code>section</code>, while a definition that applies to the whole code would have a value of <code>global</code>.</td>
-</tr></p>
-
-<p><tr>
+<table>
+<tr>
 <td>section_number</td>
 <td>string</td>
-<td>The unique identifier for the section in which the definition appears.</td>
+<td>The unique identifier for this section.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
+<tr>
+<td>catch_line</td>
+<td>string</td>
+<td>The title of this section.</td>
+<td>Not all legal codes have catch lines. California's laws, for instance, lack them.</td>
+</tr>
+
+<tr>
+<td>text</td>
+<td>string</td>
+<td>An excerpt of the text of the section.</td>
+<td>Includes the portions of the text where the search term is used.</td>
+</tr>
+
+<tr>
 <td>url</td>
 <td>string</td>
 <td>The URL of the section in which the definition appears.</td>
 <td></td>
-</tr></p>
+</tr>
 
-<p><tr>
-<td>formatted</td>
-<td>string</td>
-<td>The definition, with display-ready formatting and a citation.</td>
-<td>This is the same as the content of <code>definition</code>, with typographic niceties and a parenthetical citation.</td>
-</tr></p>
+<tr>
+<td>score</td>
+<td>integer</td>
+<td>The unique identifier for the section in which the definition appears.</td>
+<td></td>
+</tr>
 
-<p><tr>
+</table></tr>
+
+<tr>
+<td>total_records</td>
+<td>integer</td>
+<td>The number of records that match this search term.</td>
+<td>This number may exceed the number of records returned, since this method is limited to the top 100 results.</td>
+</tr>
+
+<tr>
 <td>api_version</td>
 <td>integer</td>
 <td>The version of the API that is returning this result.</td>
 <td></td>
-</tr></p>
+</tr>
 
 <h3>Sample query and response</h3>
 
 <p><code>
-http://vacode.org/api/dictionary/person?section=12.1-14&amp;key=[api_key]
+http://vacode.org/api/search/person?key=[api_key]
 </code></p>
 
 <pre><code>
 {
-    "term": "person",
-    "definition": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof.",
-    "section_number": "1-230",
-    "scope": "global",
-    "url": "http://vacode.org/1-230/",
-    "formatted": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof. (&lt;a href=\"http://vacode.org/1-230/\"&gt;§&amp;nbsp;1-230&lt;\/a&gt;)",
-    "api_version": "0.1"
+	"results": {
+		"section_number": "1-230",
+		"text": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof.",
+		"url": "http://vacode.org/1-230/",
+		"score": "5.6"
+	},
+	"total_records": "2,263",
+    "api_version": "1.0"
 }
 </code></pre>
 
