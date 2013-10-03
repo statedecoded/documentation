@@ -11,7 +11,7 @@ The `/solr_home/` directory can be kept anywhere. There's no functional need for
 
 ## Tag weighting
 
-In `solrconfig.xml`, the request handler for standard searches (`<requestHandler name="/search" class="solr.SearchHandler">`) is configured to give tags the same weight as all other indexed fields. Depending on the source of your tags, you may be well served by adjusting this number.
+In `/solr_home/statedecoded/conf/solrconfig.xml`, the request handler for standard searches (`<requestHandler name="/search" class="solr.SearchHandler">`) is configured to give tags the same weight as all other indexed fields. Depending on the source of your tags, you may be well served by adjusting this number.
 
 For instance, if your tags are well written, accurate, and not over-broad, then you could increase its weight from the (implied) default of 1.0, and take it up to 2.0, 5.0, even 10.0, for Solr to value tags, in determining the relevance of a given law, that multiple of times above all other fields.
 
