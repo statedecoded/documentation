@@ -5,6 +5,10 @@ layout: default
 
 *Note: This page is actively under development. At present, it's more of a collection of thoughts than actual documentation.*
 
+##solr_home directory
+
+The `/solr_home/` directory can be kept anywhere. There's no functional need for it to be available within the scope of the website. By default, it lives in parallel to `/htdocs/` and `/includes/`. Its location is only relevant when starting Solr, which is when the path is provided, e.g. `-Dsolr.solr.home=/var/www/example.com/solr_home/`.
+
 ## Tag weighting
 
 In `solrconfig.xml`, the request handler for standard searches (`<requestHandler name="/search" class="solr.SearchHandler">`) is configured to give tags the same weight as all other indexed fields. Depending on the source of your tags, you may be well served by adjusting this number.
