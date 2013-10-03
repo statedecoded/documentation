@@ -35,3 +35,46 @@ This is done by appending `^5` (to weight tags at 500% that of other fields) or 
 				 definition
 </str>
 ~~~
+
+## Section number tokenizer
+Within `/solr_home/statedecoded/conf/schema.xml` there is a tokenizer that indexes cross-references mentions of other laws within a law. The job of this tokenizer is to identify the pattern of a cross-reference, treat it as a single unit of data (instead of inadvertently breaking it up), and index it.
+
+Here's what the tokenizer looks like:
+
+
+```
+<fieldType name="statedec_facet_hierarchical" class="solr.TextField" positionIncrementGap="100">
+	<analyzer type="index">
+		<charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[\.-]" replacement="~" />
+		<!-- remove () or [] that somebody might use to identify a chapter -->
+		<charFilter class="solr.PatternReplaceCharFilterFactory" pattern="\(.*?\)$" replacement="" />
+		<charFilter class="solr.PatternReplaceCharFilterFactory" pattern="\[.*?\]$" replacement="" />
+		<tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="~" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*$)" replacement="1|$1" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*~[^~]*$)" replacement="2|$1" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*~[^~]*~[^~]*$)" replacement="3|$1" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*~[^~]*~[^~]*~[^~]*$)" replacement="4|$1" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*~[^~]*~[^~]*~[^~]*~[^~]*$)" replacement="5|$1" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*~[^~]*~[^~]*~[^~]*~[^~]*~[^~]*$)" replacement="6|$1" />
+		<filter class="solr.LowerCaseFilterFactory" />
+	</analyzer>
+	<analyzer type="query">
+		<charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[\.-]" replacement="~" />
+		<!-- remove () or [] that somebody might use to identify a chapter -->
+		<charFilter class="solr.PatternReplaceCharFilterFactory" pattern="\(.*?\)$" replacement="" />
+		<charFilter class="solr.PatternReplaceCharFilterFactory" pattern="\[.*?\]$" replacement="" />
+		<tokenizer class="solr.KeywordTokenizerFactory" delimiter="~" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*$)" replacement="1|$1" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*~[^~]*$)" replacement="2|$1" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*~[^~]*~[^~]*$)" replacement="3|$1" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*~[^~]*~[^~]*~[^~]*$)" replacement="4|$1" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*~[^~]*~[^~]*~[^~]*~[^~]*$)" replacement="5|$1" />
+		<filter class="solr.PatternReplaceFilterFactory" pattern="(^[^~]*~[^~]*~[^~]*~[^~]*~[^~]*~[^~]*$)" replacement="6|$1" />
+		<filter class="solr.LowerCaseFilterFactory" />
+	</analyzer>
+</fieldType>
+```
+
+As of this writing, this tokenizer is decoupled from the configuration performed in `/includes/config-sample.inc.php`, which is to say that it may require manual configuration. As provided, it may or may not work properly for the legal code that you're importing. The effect of this is also unclear just now. Search will still work generally, searching for cross-references will not work, and there's some gray area in between the two.
+
+[There is an open ticket to resolve this](https://github.com/statedecoded/statedecoded/issues/425), ideally rendering it unnecessary to even be aware that this tokenizer exists.
