@@ -11,7 +11,7 @@ layout: default
 
 # Requirements
 
-The following programs and modules are required to run The State Decoded, in addition to a basic LAMP/WAMP stack (MySQL 5+, PHP 5.2+, Apache 2+). They are almost certainly already installed on any standard server. The State Decoded’s installer will automatically check to see whether these are installed.
+The following programs and modules are required to run The State Decoded, in addition to a basic LAMP/WAMP stack (MySQL 5+, PHP 5.2+, Apache 2+). Nearly all of them are almost certainly already installed on any standard server. The State Decoded’s installer will automatically check to see whether these are installed and running.
 
 * [Make sure that Apache has `mod_rewrite` enabled](http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php) and that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles).
 * Make sure that [PHP's PDO extension](http://php.net/manual/en/book.pdo.php) has MySQL support included (which it probably does):
@@ -40,13 +40,11 @@ Here is the process of configuring the beta version of The State Decoded. (Most 
 1. Create a new MySQL database (e.g., `mysqladmin create statedecoded`) and make sure that the web server has access to it.
 1. Rename `config-sample.inc.php` to `config.inc.php`
 1. Rename `class.State-sample.inc.php` to `class.[Placename].inc.php` (e.g., `class.Kansas.inc.php`).
-1. Go through `config.inc.php` and configure each setting.
-1. Manually add a record to the MySQL table named `editions` for the instance of the legal code that you intend to import into The State Decoded. (e.g., `INSERT INTO editions SET year=2012;`)
+1. Go through `config.inc.php` and configure each setting. Additional details about each setting can be found within [the configuration file documentation](config.html).
 1. Prepare the parser.
-	* Straightforward route: With all laws in [the State Decoded XML format](xml-format.html), copy all XML files to `htdocs/admin/xml/`.
+	* Straightforward route: With all laws in [the State Decoded XML format](xml-format.html), copy all XML files to `htdocs/admin/upload/import-data/`.
 	* Custom route: Modify `class.[Statename].inc.php`—specifically `Parser::iterate`, `Parser::parse`, and `Parser::store`—to support the legal code that you will be importing. See "[How the Parser Works](parser.html)" for details.
-1. Password-protect the admin section by modifying the `htdocs/admin/.htaccess` and creating `htdocs/admin/`.htpasswd`. ([Sample instructions](http://www.seas.upenn.edu/cets/answers/auth-htpasswd.html).)
-1. Load http://example.com/admin/ in your browser and click the "Parse" button. Wait while the parser runs, which could require anywhere from 5-60 minutes to run, depending on the power of the server and the length of the legal code. This is iterating through the XML, loading it into the database, and popping up the site. When it's finished, you have a complete site for your legal code.
+1. Load http://example.com/admin/ in your browser and follow the prompts in the "Import Data" section. Wait while the parser runs, which could require anywhere from 5-60 minutes to run, depending on the power of the server and the length of the legal code. This is iterating through the XML, loading it into the database, and creating the website. When the parser finished, you have a complete site for your legal code.
 
 
 # Advanced configuration
