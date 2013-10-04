@@ -21,18 +21,18 @@ This is done by appending `^5` (to weight tags at 500% that of other fields) or 
 
 ~~~
 <str name="qf">
-				 catch_line
-					   tags^5
-					   text
-				  structure
-		   section_ancestor^10
-		 section_descendent^10
-	   refers_to_descendent
-		 refers_to_ancestor
+                catch_line
+                      tags^5
+                      text
+                 structure
+          section_ancestor^10
+         section_descendent^10
+       refers_to_descendent
+         refers_to_ancestor
   referred_to_by_descendent
-	referred_to_by_ancestor
-					   term
-				 definition
+    referred_to_by_ancestor
+                       term
+                 definition
 </str>
 ~~~
 
@@ -42,7 +42,7 @@ Within `/solr_home/statedecoded/conf/schema.xml` there is a tokenizer that index
 Here's what the tokenizer looks like:
 
 
-```
+~~~
 <fieldType name="statedec_facet_hierarchical" class="solr.TextField" positionIncrementGap="100">
 	<analyzer type="index">
 		<charFilter class="solr.PatternReplaceCharFilterFactory" pattern="[\.-]" replacement="~" />
@@ -73,7 +73,7 @@ Here's what the tokenizer looks like:
 		<filter class="solr.LowerCaseFilterFactory" />
 	</analyzer>
 </fieldType>
-```
+~~~
 
 As of this writing, this tokenizer is decoupled from the configuration performed in `/includes/config-sample.inc.php`, which is to say that it may require manual configuration. As provided, it may or may not work properly for the legal code that you're importing. The effect of this is also unclear just now. Search will still work generally, searching for cross-references will not work, and there's some gray area in between the two.
 
