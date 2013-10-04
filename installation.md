@@ -27,12 +27,16 @@ The following programs and modules are required to run The State Decoded, in add
 	* Red Hat/Fedora/CentOS: `sudo yum install php-tidy`
 	* SuSE: `yast2 --install php5-tidy`
 	* Debian/Ubuntu: `sudo apt-get install php5-tidy`
+* Install Apache Solr 4.0 or newer:
+	* At present, this rules out any package installations (via `yum`, `yast2`, `apt-get`, etc.), which are all version 1.X.
+	* Simply download Solr, and in the `examples/` directory, run `java -jar start.jar -Dsolr.solr.home=/var/www/example.com/solr_home/`, replacing `/var/www/example.com/solr_home/` with the actual path to the `solr_home` directory, which is provided as part of the State Decoded download.
+	* For anything other than a test installation, you'll need to follow Solr's guide to enabling Solr as a standard system service that will start at boot time.
 
 # Basic configuration
 
 Here is the process of configuring the beta version of The State Decoded. (Most of these steps will be automated for the v1.0 release.)
 
-1. Upload the `htdocs` and `includes` directories to your web server (e.g., both within `/var/www/example.com/`), with `htdocs` serving as the web server's document root (e.g. `/var/www/example.com/htdocs/`).
+1. Upload the `htdocs`, `includes`, and `solr_home` directories to your web server (e.g., all within `/var/www/example.com/`), with `htdocs` serving as the web server's document root (e.g. `/var/www/example.com/htdocs/`).
 1. Create a new MySQL database (e.g., `mysqladmin create statedecoded`) and make sure that the web server has access to it.
 1. Rename `config-sample.inc.php` to `config.inc.php`
 1. Rename `class.State-sample.inc.php` to `class.[Placename].inc.php` (e.g., `class.Kansas.inc.php`).
