@@ -1,0 +1,45 @@
+---
+title: Coding Standards
+layout: default
+---
+
+<ul>
+<li>Generally, <a href="http://pear.php.net/manual/en/standards.php">PEAR standards</a>.</li>
+<li>Indentation: tabs, not spaces.</li>
+<li>Wrap at 100 columns, unless the result would be confusing.</li>
+<li>Variable names in lowercase (e.g., <code>$section_number</code>), multiple words separated with underscores, never camelCase or StudlyCaps.</li>
+<li>Generally, give everything space to breathe. Whitespace is free.</li>
+<li>Braces on a new line:
+<pre><code>if ($x == $y)
+{
+  ...
+}</code></pre></li>
+<li>Save for very terse (>~5 lines?) clauses, use an extra carriage return after an opening brace and before a closing brace:
+<pre><code>while ($reference = $statement->fetch(PDO::FETCH_OBJ))
+{
+
+	$reference->catch_line = stripslashes($reference->catch_line);
+	$reference->url = 'http://' . $_SERVER['SERVER_NAME']
+		. ( ($_SERVER['SERVER_PORT'] == 80) ? '' : ':' . $_SERVER['SERVER_PORT'] )
+		. '/' . $reference->section_number . '/';
+	$references->$i = $reference;
+	$i++;
+	
+}</code></pre></li>
+<li>Don't use the ternary operator (<code>($size > 2) ? 'small' : 'large'</code>).</li>
+<li>The results of conditionals should always go within braces, rather than expressed on a single line, e.g.:
+<pre><code>if ($a == TRUE)
+{
+  echo 'true';
+}</code></pre></li>
+<li>Spaces before conditionals (<code>if ($a == TRUE)</code>, not <code>if($a == TRUE)</code>)</li>
+<li>Boolean terms in all caps (e.g., <code>TRUE</code>).</li>
+<li>Comments as complete sentences, offset like such:
+<pre><code>/*
+ * Example comment here.
+ */</pre></code></li>
+<li>Comments preceded with <code>//</code> indicate temporary, working comments, generally indicating problems.</li>
+<li>If a bit of code is anything short of perfectly obvious, provide a comment explaining it.</li>
+<li>Use <code>echo</code>, not <code>print</code>.</li>
+<li>HTML 5, meaning self-terminating tags (e.g., <code>&lt;br /&gt;</code></li>
+</ul>
