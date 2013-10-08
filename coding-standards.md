@@ -8,13 +8,15 @@ layout: default
 * Wrap at 100 columns, unless the result would be confusing.
 * Variable names in lowercase (e.g., <code>$section_number</code>), multiple words separated with underscores, never camelCase or StudlyCaps.
 * Generally, give everything space to breathe. Whitespace is free.
-* Braces on a new line:~~~
+* Braces on a new line:
+~~~
 if ($x == $y)
 {
   ...
 }
 ~~~
-* Save for very terse (>~5 lines?) clauses, use an extra carriage return after an opening brace and before a closing brace: ~~~
+* Save for very terse (>~5 lines?) clauses, use an extra carriage return after an opening brace and before a closing brace:
+~~~
 while ($reference = $statement->fetch(PDO::FETCH_OBJ))
 {
 
@@ -27,7 +29,6 @@ while ($reference = $statement->fetch(PDO::FETCH_OBJ))
 	
 }
 ~~~
-
 * Don't use the ternary operator (`($size > 2) ? 'small' : 'large'`).
 * The results of conditionals should always go within braces, rather than expressed on a single line, e.g.:~~~
 if ($a == TRUE)
@@ -37,7 +38,8 @@ if ($a == TRUE)
 ~~~
 * Spaces before conditionals (`if ($a == TRUE)`, not `if($a == TRUE)`)
 * Boolean terms in all caps (e.g., `TRUE`).
-* Comments as complete sentences, offset like such:~~~
+* Comments as complete sentences, offset like such:
+* ~~~
 /*
  * Example comment here.
  */
