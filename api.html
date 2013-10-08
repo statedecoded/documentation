@@ -710,7 +710,7 @@ http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,u
 
 <h3>Sample query and response</h3>
 
-<p>Abbreviated for brevity.</p>
+<p>Edited for brevity.</p>
 
 <pre><code>
 http://vacode.org/api/law/15.2-627?key=[api_key]
@@ -1407,6 +1407,10 @@ http://vacode.org/api/search/[word_or_phrase]?key=[api_key]
 
 <h3>Optional parameters</h3>
 
+<h4>Detail Level</h4>
+
+<p>Pass the parameter <code>detailed</code> and either <code>true</code> or <code>false</code> to indicate whether you want brief results or detailed results. Detailed results are exactly the same as if you'd used <a href="#method-law">the Law method</a> for each result. The standard fields returned by the Search method are all replaced with the standard fields returned by the Law method, with the exception of the <code>score</code> field, which remains.
+
 <h4>Callback</h4>
 
 <p>Pass the parameter <code>callback</code> and a callback string to have results returned as JSONP.</p>
@@ -1444,6 +1448,7 @@ http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=result
 </tr>
 
 <tr>
+<td>
 
 <table>
 <tr>
@@ -1461,10 +1466,17 @@ http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=result
 </tr>
 
 <tr>
-<td>text</td>
+<td>excerpt</td>
 <td>string</td>
 <td>An excerpt of the text of the section.</td>
 <td>Includes the portions of the text where the search term is used.</td>
+</tr>
+
+<tr>
+<td>text</td>
+<td>string</td>
+<td>The entire text of the section.</td>
+<td></td>
 </tr>
 
 <tr>
@@ -1477,11 +1489,18 @@ http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=result
 <tr>
 <td>score</td>
 <td>integer</td>
-<td>The unique identifier for the section in which the definition appears.</td>
+<td>The score measuring the relevance of this document.</td>
+<td><a href="http://lucene.apache.org/core/2_9_4/api/core/org/apache/lucene/search/Similarity.html">As provided by Solr</a> (Lucene).</td>
+</tr>
+
+<tr>
+<td>ancestry</td>
+<td>array</td>
+<td>Lists each hierarchically nested structural unit that contains this law.</td>
 <td></td>
 </tr>
 
-</table></tr>
+</table></td></tr>
 
 <tr>
 <td>total_records</td>
@@ -1499,6 +1518,8 @@ http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=result
 
 <h3>Sample query and response</h3>
 
+<p>Edited for brevity.</p>
+
 <p><code>
 http://vacode.org/api/search/person?key=[api_key]
 </code></p>
@@ -1508,12 +1529,17 @@ http://vacode.org/api/search/person?key=[api_key]
 	"results": {
 		"section_number": "1-230",
 		"catch_line": "Person.",
+		"excerpt": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company.....",
 		"text": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof.",
 		"url": "http://vacode.org/1-230/",
 		"score": "5.6"
 	},
 	"total_records": "2,263",
-    "api_version": "1.0"
+    "api_version": "1.0",
+	"ancestry": {
+		"title": "General Provisions",
+		"chapter": "Common Law and Rules of Construction"
+	}
 }
 </code></pre>
 
