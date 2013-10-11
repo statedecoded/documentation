@@ -33,3 +33,23 @@ If you're running Varnish or mod_pagespeed on your server, you'll need to clear 
 The home page is found at `home.php`, not `index.php`. (`index.php` is the file through which all page requests on the site are piped.)
 
 If you have an introductory video that you want to display on the home page, uncomment the `<div class="nest video">[…]</div>` stanza from `htdocs/home.php` and modify appropriately to link to your video.
+
+# Favicons, Apple Touch Icons
+
+Each of these icons should somehow correlate to the political entity's legal code. With Virginia, we used the seal icon that was created for the site. The larger touch icons have bitmapped 0 and 1s fading across, representing digital bits being "decoded" as it were. Feel free to edit the master images in [the State Decoded Assets repository](https://github.com/statedecoded/statedecoded-assets) to suit your needs. We recommend running any images through [ImageOptim](http://imageoptim.com) to squeeze out excess file size.
+
+# Sass, Compass, etc.
+
+This site was built with future flexibility and reuse in mind. To that end, the site basically is a style guide as well as a design. We use Sass/SCSS to allow the power of variables in CSS. This makes it easy to rapidly change colors and fonts without having to do massive find-and-replace or worry about color math variations in Photoshop.
+
+This does create a layer of complexity, but a worthwhile one. You, as an end user, can write regular CSS in an SCSS file and it will compile normally.
+
+To compile the SCSS into CSS, you need to run CodeKit, Scout, CompassApp, or do a manual setup with Ruby on your system. This is documented on [the Compass site](http://compass-style.org/install/).
+
+# Media Queries
+
+The site is defined with three breakpoints:
+
+* Handheld/iPhone
+* Tablet/iPad (Portrait)
+* Everything else
