@@ -12,6 +12,7 @@ layout: default
 <li><a href="#method-law">Law</a></li>
 <li><a href="#method-search">Search</a></li>
 <li><a href="#method-structure">Structure</a></li></ul></li>
+<li><a href="#method-suggest">Suggest</a></li></ul></li>
 <li><a href="#errors">Errors</a></li>
 </ul>
 
@@ -705,8 +706,8 @@ http://vacode.org/api/law/[section_number]?key=[api_key]&amp;fields=catch_line,u
 <td></td>
 </tr>
 
-<p></tbody>
-</table></p>
+</tbody>
+</table>
 
 <h3>Sample query and response</h3>
 
@@ -1262,8 +1263,8 @@ http://vacode.org/api/structure/[identifier]?key=[api_key]&amp;fields=catch_line
 <td></td>
 </tr>
 
-<p></tbody>
-</table></p>
+</tbody>
+</table>
 
 <h3>Sample query and response</h3>
 
@@ -1416,7 +1417,7 @@ http://vacode.org/api/search/[word_or_phrase]?key=[api_key]
 <p>Pass the parameter <code>callback</code> and a callback string to have results returned as JSONP.</p>
 
 <p><code>
-http://vacode.org/api/dictionary/[word_or_phrase]?key=[api_key]&amp;callback=d9f3lIb013
+http://vacode.org/api/search/[word_or_phrase]?key=[api_key]&amp;callback=d9f3lIb013
 </code></p>
 
 <h4>Specified fields</h4>
@@ -1424,7 +1425,7 @@ http://vacode.org/api/dictionary/[word_or_phrase]?key=[api_key]&amp;callback=d9f
 <p>Pass the parameter <code>fields</code> and a comma-separated list of fields to limit the response to those fields.</p>
 
 <p><code>
-http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=results
+http://vacode.org/api/search/word_or_phrase]?key=[api_key]&amp;fields=results
 </code></p>
 
 <h3>Fields</h3>
@@ -1516,6 +1517,9 @@ http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=result
 <td></td>
 </tr>
 
+</tbody>
+</table>
+
 <h3>Sample query and response</h3>
 
 <p>Edited for brevity.</p>
@@ -1543,6 +1547,92 @@ http://vacode.org/api/search/person?key=[api_key]
 }
 </code></pre>
 
+
+<h2><a id="method-suggest"></a> Suggest</h2>
+
+<p>When provided with a term, or a portion thereof, returns a list of suggestions for how to complete that term, sorted by likelihood of usefulness, limited to 5 results. Intended to be used internally, within the site, as real-time suggestions while typing in search parameters.</p>
+
+<h3>Query format</h3>
+
+<p><code>
+http://vacode.org/api/suggest/[word_or_phrase]?key=[api_key]
+</code></p>
+
+<h3>Optional parameters</h3>
+
+<h4>Callback</h4>
+
+<p>Pass the parameter <code>callback</code> and a callback string to have results returned as JSONP.</p>
+
+<p><code>
+http://vacode.org/api/suggest/[word_or_phrase]?key=[api_key]&amp;callback=d9f3lIb013
+</code></p>
+
+<h3>Fields</h3>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td>terms</td>
+<td>object</td>
+<td>A list of the suggested terms.</td>
+<td>Limited to the first 4 results.</td>
+</tr>
+<tr>
+<td>api_version</td>
+<td>integer</td>
+<td>The version of the API that is returning this result.</td>
+<td></td>
+</tr>
+
+</tbody>
+</table>
+
+<h3>Sample query and response</h3>
+
+<p>Edited for brevity.</p>
+
+<p><code>
+http://vacode.org/api/suggest/lawsu?key=[api_key]
+</code></p>
+
+<pre><code>
+{
+	"terms": [
+		{
+			id: 0,
+			term: "laws"
+		},
+		{
+			id: 1,
+			term: "lawful"
+		},
+		{
+			id: 2,
+			term: "lapse"
+		},
+		{
+			id: 3,
+			term: "lawsuit"
+		},
+		{
+			id: 4,
+			term: "lawns"
+		}
+	],
+    "api_version": "1.0",
+}
+</code></pre>
+
 <h1><a id="errors"></a>Errors</h1>
 
 <p>When a request cannot be completed, the API will return a JSON-formatted error. For example, if an invalid key is provided in a request, the response would be as follows:</p>
@@ -1553,4 +1643,4 @@ http://vacode.org/api/search/person?key=[api_key]
     "message": "An Error Occurred",
     "details": "Invalid key."
 }
-</code></p>
+</code></pre>
