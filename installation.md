@@ -29,8 +29,8 @@ The following programs and modules are required to run The State Decoded, in add
 	* Debian/Ubuntu: `sudo apt-get install php5-tidy`
 * Install Apache Solr 4.0 or newer:
 	* At present, this rules out any package installations (via `yum`, `yast2`, `apt-get`, etc.), which are all version 1.X.
-	* Simply download Solr, and in the `examples/` directory, run `java -jar start.jar -Dsolr.solr.home=/var/www/example.com/solr_home/`, replacing `/var/www/example.com/solr_home/` with the actual path to the `solr_home` directory, which is provided as part of the State Decoded download.
-	* For anything other than a test installation, you'll need to follow Solr's guide to enabling Solr as a standard system service that will start at boot time.
+	* Simply [download Solr](http://lucene.apache.org/solr/downloads.html) to your server, and in the `examples/` directory, run `java -jar start.jar -Dsolr.solr.home=/var/www/example.com/solr_home/`, replacing `/var/www/example.com/solr_home/` with the actual path to the `solr_home` directory, which is provided as part of the State Decoded download.
+	* For anything other than a test installation, you'll need to follow [Apache's guide to enabling Solr as a standard system service that will start at boot time](http://wiki.apache.org/solr/SolrJetty#Init_script_to_run_the_Solr_example).
 
 # Basic configuration
 
