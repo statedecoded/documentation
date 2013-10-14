@@ -31,6 +31,10 @@ The following programs and modules are required to run The State Decoded, in add
 	* Red Hat/Fedora/CentOS: `sudo yum install php-tidy`
 	* SuSE: `yast2 --install php5-tidy`
 	* Debian/Ubuntu: `sudo apt-get install php5-tidy`
+* Make sure that you have `zip` installed (you almost certainly do, except on Amazon EC2):
+	* Red Hat/Fedora/CentOS `sudo yum install zip`
+	* SuSE: `yast2 --install zip`
+	* Debian/Ubuntu: `sudo apt-get install zip`
 * Install Apache Solr 4.0 or newer:
 	* At present, this rules out any package installations (via `yum`, `yast2`, `apt-get`, etc.), which are all version 1.X.
 	* Simply [download Solr](http://lucene.apache.org/solr/downloads.html) to your server, and in the `examples/` directory, run `java -jar start.jar -Dsolr.solr.home=/var/www/example.com/solr_home/`, replacing `/var/www/example.com/solr_home/` with the actual path to the `solr_home` directory, which is provided as part of the State Decoded download.
