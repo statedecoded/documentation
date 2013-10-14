@@ -18,12 +18,12 @@ The following programs and modules are required to run The State Decoded, in add
 	* Red Hat/Fedora/CentOS/Windows: [instructions](http://serverfault.com/questions/56394/how-do-i-enable-apache-modules-from-the-command-line-in-redhat/56435#56435)
 	* SuSE: [instructions](http://johannesluderschmidt.de/lang/en-us/django-invalid-command-setenv-in-opensuse/291/)
 	* Debian/Ubuntu: `sudo a2enmod env`
-* Make sure that [PHP's PDO extension](http://php.net/manual/en/book.pdo.php) has MySQL support included (which it probably does):
+* Make sure that [PHP's PDO extension](http://php.net/manual/en/book.pdo.php) has MySQL support included:
 	* Red Hat/Fedora/CentOS: `sudo yum install php-mysql`
 	* SuSE: `yast2 --install php5-mysql`
 	* Debian/Ubuntu: `sudo apt-get install php5-mysql`
 	* Windows: `add to php.ini: extension=php_pdo_mysql.dll`
-* Make sure that you have `php-curl` installed (which you probably do):
+* Make sure that you have `php-curl` installed:
 	* Red Hat/Fedora/CentOS: `sudo yum install php-curl`
 	* SuSE: `yast2 --install php5-curl`
 	* Debian/Ubuntu: `sudo apt-get install php5-curl`
