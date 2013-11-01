@@ -13,7 +13,6 @@ layout: default
 
 The following programs and modules are required to run The State Decoded, in addition to a basic LAMP/WAMP stack (MySQL 5+, PHP 5.2+, Apache 2+). *Nearly all of these are almost certainly already installed and configured properly on any standard server.* The exception is on Amazon’s EC2 and other stripped-down cloud servers. The State Decoded’s installer will automatically check to see whether these are installed and running, and alert you to any problems.
 
-* [Make sure that Apache has `mod_rewrite` enabled](http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php) and that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles).
 * [Make sure that Apache has `mod_rewrite` enabled](http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php), that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles), and that you [haven't enabled `MultiViews`](http://httpd.apache.org/docs/2.2/mod/mod_negotiation.html#multiviews) for your site’s virtual host.
 * Make sure that [`php.ini` has `allow_url_fopen` enabled](http://www.php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen).
 * Make sure that Apache has `mod_env` enabled:
@@ -40,7 +39,7 @@ The following programs and modules are required to run The State Decoded, in add
 * Install Apache Solr 4.0 or newer:
 	* At present, this rules out any package installations (via `yum`, `yast2`, `apt-get`, etc.), which are all version 1.X for reasons known only to Solr’s developers.
 	* Simply [download Solr](http://lucene.apache.org/solr/downloads.html) to your server, and in the `examples/` directory, run `java -jar start.jar -Dsolr.solr.home=/var/www/example.com/solr_home/`, replacing `/var/www/example.com/solr_home/` with the actual path to the `solr_home` directory, which is provided as part of the State Decoded download.
-	* For anything other than a test installation, you'll need to follow [Apache's guide to enabling Solr as a standard system service that will start at boot time](http://wiki.apache.org/solr/SolrJetty#Init_script_to_run_the_Solr_example).
+	* When deploying a production site, you'll need to follow [Apache's guide to enabling Solr as a standard system service that will start at boot time](http://wiki.apache.org/solr/SolrJetty#Init_script_to_run_the_Solr_example).
 
 # Basic configuration
 
