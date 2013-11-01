@@ -33,7 +33,7 @@ The following programs and modules are required to run The State Decoded, in add
 	* Red Hat/Fedora/CentOS: `sudo yum install php-tidy`
 	* SuSE: `yast2 --install php5-tidy`
 	* Debian/Ubuntu: `sudo apt-get install php5-tidy`
-* Make sure that you have `zip` installed (you almost certainly do, except on Amazon EC2):
+* Make sure that you have `zip` installed:
 	* Red Hat/Fedora/CentOS `sudo yum install zip`
 	* SuSE: `yast2 --install zip`
 	* Debian/Ubuntu: `sudo apt-get install zip`
@@ -44,7 +44,7 @@ The following programs and modules are required to run The State Decoded, in add
 
 # Basic configuration
 
-Here is the process of configuring the beta version of The State Decoded. (Most of these steps will be automated for the v1.0 release.)
+Here is the process of configuring the beta version of The State Decoded.
 
 1. Upload the `htdocs`, `includes`, and `solr_home` directories to your web server (e.g., all within `/var/www/example.com/`), with `htdocs` serving as the web server's document root (e.g. `/var/www/example.com/htdocs/`).
 1. Create a new MySQL database (e.g., `mysqladmin create statedecoded`) and make sure that the web server has access to it.
