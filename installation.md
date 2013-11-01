@@ -15,6 +15,7 @@ The following programs and modules are required to run The State Decoded, in add
 
 * [Make sure that Apache has `mod_rewrite` enabled](http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php) and that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles).
 * [Make sure that Apache has `mod_rewrite` enabled](http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php), that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles), and that you [haven't enabled `MultiViews`](http://httpd.apache.org/docs/2.2/mod/mod_negotiation.html#multiviews) for your site’s virtual host.
+* Make sure that [`php.ini` has `allow_url_fopen` enabled](http://www.php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen).
 * Make sure that Apache has `mod_env` enabled:
 	* Red Hat/Fedora/CentOS/Windows: [instructions](http://serverfault.com/questions/56394/how-do-i-enable-apache-modules-from-the-command-line-in-redhat/56435#56435)
 	* SuSE: [instructions](http://johannesluderschmidt.de/lang/en-us/django-invalid-command-setenv-in-opensuse/291/)
