@@ -51,10 +51,10 @@ Here is the process of configuring the beta version of The State Decoded.
 1. Rename `config-sample.inc.php` to `config.inc.php`
 1. Rename `class.State-sample.inc.php` to `class.[Placename].inc.php` (e.g., `class.Kansas.inc.php`).
 1. Go through `config.inc.php` and configure each setting. Additional details about each setting can be found within [the configuration file documentation](config.html).
-1. Prepare the parser.
-	* Straightforward route: With all laws in [the State Decoded XML format](xml-format.html), copy all XML files to `htdocs/admin/import-data/`.
-	* Custom route: Modify `class.[Statename].inc.php`—specifically `Parser::iterate`, `Parser::parse`, and `Parser::store`—to support the legal code that you will be importing. See "[How the Parser Works](parser.html)" for details.
-1. Load http://example.com/admin/ in your browser and follow the prompts in the "Import Data" section. Wait while the parser runs, which could require anywhere from 5-60 minutes to run, depending on the power of the server and the length of the legal code. This is iterating through the XML, loading it into the database, and creating the website. When the parser finished, you have a complete site for your legal code.
+1. Prepare the parser, selecting from these two methods:
+	* Straightforward method: With all laws in [the State Decoded XML format](xml-format.html), copy all XML files to `htdocs/admin/import-data/`.
+	* Custom method: Modify `class.[Statename].inc.php`—specifically `Parser::iterate`, `Parser::parse`, and `Parser::store`—to support the legal code that you will be importing. See “[How the Parser Works](parser.html)” for details.
+1. Load `http://example.com/admin/` in your browser and follow the prompts in the "Import Data" section. Wait while the parser runs, which could require anywhere from 5-60 minutes to run, depending on the power of your server and the length of your legal code. This is iterating through the XML, loading it into the database, and creating the website. When the parser finished, you have a complete site for your legal code at `http://example.com/`.
 
 
 # Advanced configuration
