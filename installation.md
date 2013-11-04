@@ -39,6 +39,7 @@ The following programs and modules are required to run The State Decoded, in add
 * Install Apache Solr 4.0 or newer:
 	* At present, this rules out any package installations (via `yum`, `yast2`, `apt-get`, etc.), which are all version 1.X for reasons known only to Solr’s developers.
 	* Simply [download Solr](http://lucene.apache.org/solr/downloads.html) to your server, and in the `examples/` directory, run `java -jar start.jar -Dsolr.solr.home=/var/www/example.com/solr_home/`, replacing `/var/www/example.com/solr_home/` with the actual path to the `solr_home` directory, which is provided as part of the State Decoded download.
+	* Note the port number on which Solr is running. This is `8080` by default, but some Linux distributions (e.g., Ubuntu) will set it to `8983` instead. If it isn't `8080`, then you'll need to modify `SOLR_URL` in `config.inc.php` to reflect that different port number.
 	* When deploying a production site, you'll need to follow [Apache's guide to enabling Solr as a standard system service that will start at boot time](http://wiki.apache.org/solr/SolrJetty#Init_script_to_run_the_Solr_example).
 
 # Basic configuration
