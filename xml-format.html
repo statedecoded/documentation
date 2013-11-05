@@ -7,7 +7,15 @@ layout: default
 
 <p>The State Decoded has <a href="https://github.com/statedecoded/statedecoded/blob/master/sample.xsl">a sample XSLT file</a> on which you can base your own XSLT. It is well commented and verbose, so even if you’re not familiar with XSLT, you’ve got a fighting chance of transforming your XML to The State Decoded’s format.</p>
 
-<p>Note that this is <em>not</em> an effort to create a standard interchange or storage format for legal codes. This exists solely as a convenience for important data into The State Decoded.</p>
+<p>Note that this is <em>not</em> an effort to create a standard interchange or storage format for legal codes. This exists solely as a convenience for importing data into The State Decoded.</p>
+
+<h1>Terminology</h1>
+
+Legal codes throughout the U.S. all use different terminology (e.g., "statutes" vs "code" vs "laws"). We need to adopt some terminology here, and while it can't be the right terminology everywhere, we hope to avoid any disputes about what exactly is the right terminology. The terminology we've adopted was the simplest that also reflected the reality of the data. A lot of people implementing The State Decoded are programmers, not attorneys, and the terminology that the project uses needs to reflect the reality of that user base.
+
+Below, the word "law" refers to what some jurisdictions would call a section, and it's usually prefixed with the § symbol. It corresponds to a single page on a State Decoded website.
+
+Within a "law", we use "section" elements to represent the hierarchical structure of the paragraphs within it. In some jurisdictions this would be called a subsection. A "section" corresponds to a paragraph plus any logically nested (typically indented) content within it.
 
 <h1>Descriptive Specifications</h1>
 
@@ -157,5 +165,9 @@ layout: default
 		&lt;tag&gt;fraud&lt;/tag&gt;
 		&lt;tag&gt;theft&lt;/tag&gt;
 	&lt;/tags&gt;
+<<<<<<< HEAD
 &lt;/law&gt;
+=======
+</law>
+>>>>>>> 1d5ca07d481df6e6c1e8d18ca5da7f82626d02ad
 </pre>
