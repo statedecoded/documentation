@@ -66,6 +66,7 @@ http://vacode.org/api/dictionary/[word_or_phrase]?key=[api_key]
 
 <p><code>
 http://vacode.org/api/dictionary/person?section=12.1-14&amp;key=[api_key]
+http://vacode.org/api/dictionary/?section=12.1-14&amp;key=[api_key]
 </code></p>
 
 <h4>Callback</h4>
@@ -85,6 +86,8 @@ http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=defini
 </code></p>
 
 <h3>Fields</h3>
+
+<h4>When looking up a definition</h4>
 
 <table>
 <thead>
@@ -149,7 +152,30 @@ http://vacode.org/api/dictionary/word_or_phrase]?key=[api_key]&amp;fields=defini
 </tbody>
 </table>
 
-<h3>Sample query and response</h3>
+<h4>Term list</h4>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td>term</td>
+<td>string</td>
+<td>The term that is being defined.</td>
+<td></td>
+</tr>
+
+</tbody>
+</table>
+
+<h3>Sample queries and responses</h3>
 
 <p><code>
 http://vacode.org/api/dictionary/person?section=12.1-14&amp;key=[api_key]
@@ -164,6 +190,28 @@ http://vacode.org/api/dictionary/person?section=12.1-14&amp;key=[api_key]
     "url": "http://vacode.org/1-230/",
     "formatted": "“Person” includes any individual, corporation, partnership, association, cooperative, limited liability company, trust, joint venture, government, political subdivision, or any other legal or commercial entity and any successor, representative, agent, agency, or instrumentality thereof. (&lt;a href=\"http://vacode.org/1-230/\"&gt;§&amp;nbsp;1-230&lt;\/a&gt;)",
     "api_version": "1.0"
+}
+</code></pre>
+
+Edited for brevity.
+
+<p><code>
+http://vacode.org/api/dictionary/?section=12.1-14&amp;key=[api_key]
+</code></p>
+
+<pre><code>
+{
+	0: "adult",
+	1: "bond with surety",
+	2: "state agency",
+	3: "city",
+	4: "collegial body",
+	5: "courts of record",
+	6: "ex officio",
+	7: "includes",
+	8: "real estate",
+	9: "blighted property",
+	api_version: "1.0"
 }
 </code></pre>
 
