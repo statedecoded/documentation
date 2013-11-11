@@ -75,11 +75,8 @@ Not all legal codes need this. This only needs to be specified for those legal c
 ## STRUCTURE
 Create a list of the hiearchy of the code, from the top container to the name of an individual law. A legal code's top structural unit might be "titles," and each title might be divided into "chapters," each chapter might be divided into "parts," and each part might be divided into "sections." That would be rendered here as `title,chapter,part,section`.
 
-## SECTION_PCRE
+## SECTION_REGEX
 Define the regular expression that identifies section references. It is best to do so without using the legal code's symbol (e.g., `§`), since section references are frequently made without its presence. [A growing collection of per-state regular expressions is available](https://github.com/statedecoded/law-identifier)—even if the regular expression that you need isn't found there, you should be able to find something to repurpose.
-
-## SECTION_PCRE_STRUCTURE
-Map the above PCRE's stanzas to its corresponding hierarchical labels. It's OK to have duplicates. For example, if the PCRE is broken up like (title)(title)-(part)-(section)(section), then list "title,title,part,section,section".
 
 ## ERROR_PAGE_DB
 The path, relative to the webroot, to an error page to be displayed if the database connection is not available. (Like the fail whale.) Do not begin this path with a slash. If this is undefined, a bare database connection error will be displayed.
