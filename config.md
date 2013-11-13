@@ -105,6 +105,8 @@ If you want to track traffic stats with Google Analytics, provide your site's we
 ## TYPEKIT_ID
 The State Decoded can optionally render the site using several very nice, commercial fonts, calling them from Adobe's [Typekit](https://typekit.com/) service. This requires [paid registration at the "Portfolio" level](https://typekit.com/plans), which costs $4/month. The provided Typekit site ID goes here. See [the "Typekit typefaces" section of the installation guide](http://statedecoded.github.io/documentation/installation.html#typekit-typefaces) for details about where to find that ID.
 
+## COURTLISTENER_USERNAME / COURTLISTENER_PASSWORD
+ * If you want to display court decisions that affect each law using [CourtListener's REST API](https://www.courtlistener.com/api/rest-info/), you must register for an account and enter your username and password here. See the `get_court_decisions()` method in `class.State-sample.inc.php` to actually enable the display of these decisions.
+
 # Caching
 If you are running APC on your web server, note that all of these configuration constants are cached aggressively. You will need to clear APC's cache after making any changes to them, or else those changes will not take effect for hours or days. This can be done in your site’s admin section. (Note that the option is only displayed if you are running APC.)
-
