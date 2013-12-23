@@ -37,12 +37,12 @@ Within a "law", we use "section" elements to represent the hierarchical structur
 <ul><li>structure: the container for structural units (chapters, titles, articles, parts, etc.)—required</li>
 <li>unit: a single structural unit that contains this law—required
 <ul><li>label: the type of structural unit that this is (chapter, title, article, part, etc.)—required</li>
-<li>identifier: the unique identifier for this structural unit, almost always a number (e.g., 18.2, 6)—required</li>
-<li>order<em>by: when listing all structural units of this label, in what ordinal position this structural unit should appear—optional</li>
+<li>identifier: the unique identifier for this structural unit (but not necessarily globally unique!), almost always a number (e.g., 18.2, 6)—required</li>
+<li>orderby: when listing all structural units of this label, in what ordinal position this structural unit should appear—optional</li>
 <li>level: a whole number, starting at one, indicating the depth of this structural unit—required</li></ul></li>
-<li>section</em>number: the unique identifier for this law—required</li>
-<li>catch<em>line: the title of this law—required</li>
-<li>order</em>by: when listing all laws within this structural unit, in what ordinal position this law should appear—optional</li>
+<li>sectionnumber: the unique identifier for this law—required</li>
+<li>catchline: the title of this law—required</li>
+<li>orderby: when listing all laws within this structural unit, in what ordinal position this law should appear—optional</li>
 <li>text: the container for the text of the law itself—required</li>
 <li>section: a single labelled section of a law—optional
 <ul><li>prefix: the identifying label for this section (e.g., A, 6, vi)—required</li>
