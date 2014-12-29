@@ -25,8 +25,8 @@ The directory in which the importer can find the laws to be imported.
 ## CUSTOM_FUNCTIONS
 The file in the `/includes/` directory that contains functions custom to this installation. By convention, this is named for the place that these laws govern, e.g. `class.Kansas.inc.php`.
 
-## TEMPLATE_DIR
-The directory in which templates are found.
+## THEMES_DIR
+The directory in which themes (site design templates) are found.
 
 ## THEME_NAME
 The name of the theme that's in use.
