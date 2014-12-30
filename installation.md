@@ -13,8 +13,14 @@ layout: default
 
 The following programs and modules are required to run The State Decoded, in addition to a basic LAMP/WAMP stack (MySQL 5+, PHP 5.2+, Apache 2+). *Nearly all of these are almost certainly already installed and configured properly on any standard server.* The exception is on Amazon’s EC2 and other stripped-down cloud servers. The State Decoded’s installer will automatically check to see whether these are installed and running, and alert you to any problems.
 
-* [Make sure that Apache has `mod_rewrite` enabled](http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php), that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles), and that you [haven't enabled `MultiViews`](http://httpd.apache.org/docs/2.2/mod/mod_negotiation.html#multiviews) for your site’s virtual host.
+* Make sure that that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles)
+* Make sure that [`MultiViews` isn’t enabled](http://httpd.apache.org/docs/2.2/mod/mod_negotiation.html#multiviews) for your site’s virtual host.
 * Make sure that [`php.ini` has `allow_url_fopen` enabled](http://www.php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen).
+* [Make sure that Apache has `mod_rewrite` enabled](http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php):
+	* Red Hat/Fedora/CentOS: uncomment [`mod_rewrite.so` from `httpd.conf`](http://www.ewhathow.com/2013/09/how-to-enable-mod_rewrite-on-apache/)
+	* SuSE: [add `rewrite` to the `APACHE_MODULES` portion of `/etc/sysconfig/apache2`](http://enarion.net/web/htaccess/mod_rewrite-on-suse/)
+	* Debian/Ubuntu: `sudo a2enmod rewrite`
+	* Windows: uncomment [`mod_rewrite.so` from `httpd.conf`](http://www.webdevdoor.com/php/mod_rewrite-windows-apache-url-rewriting/)
 * Make sure that Apache has `mod_env` enabled:
 	* Red Hat/Fedora/CentOS/Windows: [instructions](http://serverfault.com/questions/56394/how-do-i-enable-apache-modules-from-the-command-line-in-redhat/56435#56435)
 	* SuSE: [instructions](http://johannesluderschmidt.de/lang/en-us/django-invalid-command-setenv-in-opensuse/291/)
