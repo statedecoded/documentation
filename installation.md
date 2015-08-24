@@ -25,27 +25,11 @@ The following programs and modules are required to run The State Decoded, in add
 	* Red Hat/Fedora/CentOS/Windows: [instructions](http://serverfault.com/questions/56394/how-do-i-enable-apache-modules-from-the-command-line-in-redhat/56435#56435)
 	* SuSE: [instructions](http://johannesluderschmidt.de/lang/en-us/django-invalid-command-setenv-in-opensuse/291/)
 	* Debian/Ubuntu: `sudo a2enmod env`
-* Make sure that [PHP's PDO extension](http://php.net/manual/en/book.pdo.php) has MySQL support included:
-	* Red Hat/Fedora/CentOS: `sudo yum install php-mysql`
-	* SuSE: `yast2 --install php5-mysql`
-	* Debian/Ubuntu: `sudo apt-get install php5-mysql`
+* Make sure that [PHP's PDO extension](http://php.net/manual/en/book.pdo.php) has MySQL support included, and install `php-curl`, `php-tidy` (or `tidy`), `zip`, and `xmllint`:
+	* Red Hat/Fedora/CentOS: `sudo yum install php-mysql php-curl php-tidy zip libxml2`
+	* SuSE: `yast2 --install php5-mysql php5-curl php5-tidy zip libxml2-tools`
+	* Debian/Ubuntu: `sudo apt-get install php5-mysql php5-curl php5-tidy zip libxml2-utils`
 	* Windows: `add to php.ini: extension=php_pdo_mysql.dll`
-* Make sure that you have `php-curl` installed:
-	* Red Hat/Fedora/CentOS: `sudo yum install php-curl`
-	* SuSE: `yast2 --install php5-curl`
-	* Debian/Ubuntu: `sudo apt-get install php5-curl`
-* Make sure that you have either `php-tidy` or `tidy` installed:
-	* Red Hat/Fedora/CentOS: `sudo yum install php-tidy`
-	* SuSE: `yast2 --install php5-tidy`
-	* Debian/Ubuntu: `sudo apt-get install php5-tidy`
-* Make sure that you have `zip` installed:
-	* Red Hat/Fedora/CentOS `sudo yum install zip`
-	* SuSE: `yast2 --install zip`
-	* Debian/Ubuntu: `sudo apt-get install zip`
-* Make sure that you have `xmllint` installed:
-	* Red Hat/Fedora/CentOS: `sudo yum install libxml2`
-	* SuSE: `yast2 --install libxml2-tools`
-	* Debian/Ubuntu: `sudo apt-get install libxml2-utils`
 * Install Apache Solr 4.3 or newer:
 	* At present, this rules out any package installations (via `yum`, `yast2`, `apt-get`, etc.), which are all older versions.
 	* Simply [download Solr](http://lucene.apache.org/solr/downloads.html) to your server, and in the `example/` directory, run `java -jar start.jar -Dsolr.solr.home=/var/www/example.com/solr_home/`, replacing `/var/www/example.com/solr_home/` with the actual path to the `solr_home` directory, which is provided as part of the State Decoded download.
