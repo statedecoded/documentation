@@ -11,7 +11,7 @@ layout: default
 
 # Requirements
 
-The following programs and modules are required to run The State Decoded, in addition to a basic LAMP/WAMP stack (MySQL 5+, PHP 5.2+, Apache 2+). *Nearly all of these are almost certainly already installed and configured properly on any standard server.* The exception is on Amazon’s EC2 and other stripped-down cloud servers. The State Decoded’s installer will automatically check to see whether these are installed and running, and alert you to any problems.
+The following programs and modules are required to run The State Decoded, in addition to a basic LAMP/WAMP stack (MySQL 5+, PHP 5.4+, Apache 2+). *Nearly all of these are almost certainly already installed and configured properly on any standard server.* The exception is on Amazon’s EC2 and other stripped-down cloud servers. The State Decoded’s installer will automatically check to see whether these are installed and running, and alert you to any problems.
 
 * Make sure that that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles)
 * Make sure that [`MultiViews` isn’t enabled](http://httpd.apache.org/docs/2.2/mod/mod_negotiation.html#multiviews) for your site’s virtual host.
