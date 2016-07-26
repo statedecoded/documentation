@@ -104,7 +104,7 @@ These are all terms that can connect a defined term to its definition. These are
 
 Finally, the terms themselves are located based on the presence of quotation marks. (Either straight quotation marks—`U+0022` in Unicode—or angled double quotation marks—`U+201C` and `U+201D` in Unicode.) If the terms within your legal code are not stored within double quotation marks, then `extract_definitions()` will need to be modified to be able to isolate those terms, such as locating them within `<em></em>` tags. For those rare legal codes that do not offset defined terms in any way (italics, quotation marks, or otherwise; e.g., Nebraska), modifications to the code will be necessary in order to isolate the term being defined.
 
-The State Decode does its best to allow for the many terms and phrases employed by different legal codes, but this may need to be tuned to accommodate the legal code that you are parsing. Survey how it indicates the scope of definitions, and how it connects a term to its definition, and modify `extract_definitions()` to suit those circumstances.
+The State Decoded does its best to allow for the many terms and phrases employed by different legal codes, but this may need to be tuned to accommodate the legal code that you are parsing. Survey how it indicates the scope of definitions, and how it connects a term to its definition, and modify `extract_definitions()` to suit those circumstances.
 
 ## Varnish caching
 
