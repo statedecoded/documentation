@@ -25,8 +25,8 @@ The directory in which the importer can find the laws to be imported.
 ## CUSTOM_FUNCTIONS
 The file in the `/includes/` directory that contains functions custom to this installation. By convention, this is named for the place that these laws govern, e.g. `class.Kansas.inc.php`.
 
-## TEMPLATE_DIR
-The directory in which templates are found.
+## THEMES_DIR
+The directory in which themes (site design templates) are found.
 
 ## THEME_NAME
 The name of the theme that's in use.
@@ -89,6 +89,12 @@ When sending e-mail, what name should appear in the "From" field?
 
 ## RECORD_VIEWS
 Record each view of each law in the laws_views table? Doing so provides a corpus of data that can be useful for analysis, data that will be drawn on in future releases of The State Decoded, but that at present is not used for anything. This is done via MySQL's `INSERT DELAYED`, so it will not slow down page rendering time, but it does require a certain amount of system resources and storage.
+
+## USE_GENERIC_TERMS
+When embedding definitions for legal terms, should the terms in The State Decoded's built-in legal dictionary be included? If this is set to `FALSE`, only the terms defined within this legal code will appear as defined terms. The built-in legal dictionary includes definitions for nearly 500 legal terms that are not generally defined within legal codes. If any of the terms are defined within this legal code, the generic definition will not be displayed, in favor of the legal code’s custom definition.
+
+## SEARCH_CONFIG
+This indicates whether the data is indexed with Solr or MySQL and, if Solr, specifies how to interact with Solr. Unusually for these configuration options, the value of this is a JSON-encoded array (JSON-encoded because constants cannot contain arrays). Only the `engine` element is necessary if using MySQL, otherwise all additional listed array elements must be completed as specified within the config file.
 
 ## API_KEY
 The site uses its own API extensively, such as to display inline definitions and inline cross-references. That API is stored here, although you don't have to do it—this is populated automatically at the time that the parser is run.

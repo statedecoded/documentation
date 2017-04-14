@@ -5,7 +5,7 @@ layout: default
 
 <p>The State Decoded parser can either be modified to use bespoke PHP to parse a legal code in its native format, or it can parse a prescribed XML format. This is a totally invented XML format. There is no legal code that is provided in this format. It is provided as an option because, via <a href="http://en.wikipedia.org/wiki/XSLT">XSLT</a>, it can be substantially easier to convert an existing XML to this format than to write a parser for it in PHP.</p>
 
-<p>The State Decoded has <a href="https://github.com/statedecoded/statedecoded/blob/master/sample.xsl">a sample XSLT file</a> on which you can base your own XSLT. It is well commented and verbose, so even if you’re not familiar with XSLT, you’ve got a fighting chance of transforming your XML to The State Decoded’s format.</p>
+<p>The State Decoded includes <a href="https://github.com/statedecoded/statedecoded/blob/master/sample.xsl">a sample XSLT file</a> on which you can base your own XSLT. It is well commented and verbose, so even if you’re not familiar with XSLT, you’ve got a fighting chance of transforming your XML to The State Decoded’s format. If the legal code that you are ingesting is in Lexis-Nexis' XML format (which sometimes travels under the name of “legislativedoc v1”), then use <code><a href="https://github.com/statedecoded/statedecoded/blob/master/lexis-nexis.xsl">lexis-nexis.xsl</a></code>, which is included with The State Decoded.</p>
 
 <p>Note that this is <em>not</em> an effort to create a standard interchange or storage format for legal codes. This exists solely as a convenience for importing data into The State Decoded.</p>
 

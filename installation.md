@@ -11,38 +11,28 @@ layout: default
 
 # Requirements
 
-The following programs and modules are required to run The State Decoded, in addition to a basic LAMP/WAMP stack (MySQL 5+, PHP 5.2+, Apache 2+). *Nearly all of these are almost certainly already installed and configured properly on any standard server.* The exception is on Amazon’s EC2 and other stripped-down cloud servers. The State Decoded’s installer will automatically check to see whether these are installed and running, and alert you to any problems.
+The following programs and modules are required to run The State Decoded, in addition to a basic LAMP/WAMP stack (MySQL 5+, PHP 5.4+, Apache 2+). *Nearly all of these are almost certainly already installed and configured properly on any standard server.* The exception is on Amazon’s EC2 and other stripped-down cloud servers. The State Decoded’s installer will automatically check to see whether these are installed and running, and alert you to any problems.
 
-* [Make sure that Apache has `mod_rewrite` enabled](http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php), that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles), and that you [haven't enabled `MultiViews`](http://httpd.apache.org/docs/2.2/mod/mod_negotiation.html#multiviews) for your site’s virtual host.
+* Make sure that that [`.htaccess` files can use `RewriteRule`](https://help.ubuntu.com/community/EnablingUseOfApacheHtaccessFiles)
+* Make sure that [`MultiViews` isn’t enabled](http://httpd.apache.org/docs/2.2/mod/mod_negotiation.html#multiviews) for your site’s virtual host.
 * Make sure that [`php.ini` has `allow_url_fopen` enabled](http://www.php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen).
+* [Make sure that Apache has `mod_rewrite` enabled](http://stackoverflow.com/questions/9021425/how-to-check-if-mod-rewrite-is-enabled-in-php):
+	* Red Hat/Fedora/CentOS: uncomment [`mod_rewrite.so` from `httpd.conf`](http://www.ewhathow.com/2013/09/how-to-enable-mod_rewrite-on-apache/)
+	* SuSE: [add `rewrite` to the `APACHE_MODULES` portion of `/etc/sysconfig/apache2`](http://enarion.net/web/htaccess/mod_rewrite-on-suse/)
+	* Debian/Ubuntu: `sudo a2enmod rewrite`
+	* Windows: uncomment [`mod_rewrite.so` from `httpd.conf`](http://www.webdevdoor.com/php/mod_rewrite-windows-apache-url-rewriting/)
 * Make sure that Apache has `mod_env` enabled:
 	* Red Hat/Fedora/CentOS/Windows: [instructions](http://serverfault.com/questions/56394/how-do-i-enable-apache-modules-from-the-command-line-in-redhat/56435#56435)
 	* SuSE: [instructions](http://johannesluderschmidt.de/lang/en-us/django-invalid-command-setenv-in-opensuse/291/)
 	* Debian/Ubuntu: `sudo a2enmod env`
-* Make sure that [PHP's PDO extension](http://php.net/manual/en/book.pdo.php) has MySQL support included:
-	* Red Hat/Fedora/CentOS: `sudo yum install php-mysql`
-	* SuSE: `yast2 --install php5-mysql`
-	* Debian/Ubuntu: `sudo apt-get install php5-mysql`
+* Make sure that [PHP's PDO extension](http://php.net/manual/en/book.pdo.php) has MySQL support included, and install `php-curl`, `php-tidy` (or `tidy`), `zip`, and `xmllint`:
+	* Red Hat/Fedora/CentOS: `sudo yum install php-mysql php-curl php-tidy zip libxml2`
+	* SuSE: `yast2 --install php5-mysql php5-curl php5-tidy zip libxml2-tools`
+	* Debian/Ubuntu: `sudo apt-get install php5-mysql php5-curl php5-tidy zip libxml2-utils`
 	* Windows: `add to php.ini: extension=php_pdo_mysql.dll`
-* Make sure that you have `php-curl` installed:
-	* Red Hat/Fedora/CentOS: `sudo yum install php-curl`
-	* SuSE: `yast2 --install php5-curl`
-	* Debian/Ubuntu: `sudo apt-get install php5-curl`
-* Make sure that you have either `php-tidy` or `tidy` installed:
-	* Red Hat/Fedora/CentOS: `sudo yum install php-tidy`
-	* SuSE: `yast2 --install php5-tidy`
-	* Debian/Ubuntu: `sudo apt-get install php5-tidy`
-* Make sure that you have `zip` installed:
-	* Red Hat/Fedora/CentOS `sudo yum install zip`
-	* SuSE: `yast2 --install zip`
-	* Debian/Ubuntu: `sudo apt-get install zip`
-* Make sure that you have `xmllint` installed:
-	* Red Hat/Fedora/CentOS: `sudo yum install libxml2`
-	* SuSE: `yast2 --install libxml2-tools`
-	* Debian/Ubuntu: `sudo apt-get install libxml2-utils`
 * Install Apache Solr 4.3 or newer:
 	* At present, this rules out any package installations (via `yum`, `yast2`, `apt-get`, etc.), which are all older versions.
-	* Simply [download Solr](http://lucene.apache.org/solr/downloads.html) to your server, and in the `examples/` directory, run `java -jar start.jar -Dsolr.solr.home=/var/www/example.com/solr_home/`, replacing `/var/www/example.com/solr_home/` with the actual path to the `solr_home` directory, which is provided as part of the State Decoded download.
+	* Simply [download Solr](http://lucene.apache.org/solr/downloads.html) to your server, and in the `example/` directory, run `java -jar start.jar -Dsolr.solr.home=/var/www/example.com/solr_home/`, replacing `/var/www/example.com/solr_home/` with the actual path to the `solr_home` directory, which is provided as part of the State Decoded download.
 	* Note the port number on which Solr is running. This is `8080` by default, but some Linux distributions (e.g., Ubuntu) will set it to `8983` instead. If it isn't `8080`, then you'll need to modify `SOLR_URL` in `config.inc.php` to reflect that different port number.
 	* When deploying a production site, you'll need to follow [Apache's guide to enabling Solr as a standard system service that will start at boot time](http://wiki.apache.org/solr/SolrJetty#Init_script_to_run_the_Solr_example).
 
@@ -58,8 +48,7 @@ Here is the process of configuring the beta version of The State Decoded.
 1. Prepare the parser, selecting from these two methods:
 	* Straightforward method: With all laws in [the State Decoded XML format](xml-format.html), copy all XML files to `htdocs/admin/import-data/`.
 	* Custom method: Modify `class.[Statename].inc.php`—specifically `Parser::iterate`, `Parser::parse`, and `Parser::store`—to support the legal code that you will be importing. See “[How the Parser Works](parser.html)” for details.
-1. Load `http://example.com/admin/` in your browser and follow the prompts in the "Import Data" section. Wait while the parser runs, which could require anywhere from 5-60 minutes to run, depending on the power of your server and the length of your legal code. This is iterating through the XML, loading it into the database, and creating the website. When the parser finished, you have a complete site for your legal code at `http://example.com/`.
-
+1. Load `http://example.com/admin/` in your browser and follow the prompts in the "Import Data" section. Wait while the parser runs, which could require anywhere from 5-60 minutes to run, depending on the power of your server and the length of your legal code. This is iterating through the XML, loading it into the database, and creating the website. When the is parser finished, you have a complete site for your legal code at `http://example.com/`.
 
 # Advanced configuration
 
@@ -115,7 +104,7 @@ These are all terms that can connect a defined term to its definition. These are
 
 Finally, the terms themselves are located based on the presence of quotation marks. (Either straight quotation marks—`U+0022` in Unicode—or angled double quotation marks—`U+201C` and `U+201D` in Unicode.) If the terms within your legal code are not stored within double quotation marks, then `extract_definitions()` will need to be modified to be able to isolate those terms, such as locating them within `<em></em>` tags. For those rare legal codes that do not offset defined terms in any way (italics, quotation marks, or otherwise; e.g., Nebraska), modifications to the code will be necessary in order to isolate the term being defined.
 
-The State Decode does its best to allow for the many terms and phrases employed by different legal codes, but this may need to be tuned to accommodate the legal code that you are parsing. Survey how it indicates the scope of definitions, and how it connects a term to its definition, and modify `extract_definitions()` to suit those circumstances.
+The State Decoded does its best to allow for the many terms and phrases employed by different legal codes, but this may need to be tuned to accommodate the legal code that you are parsing. Survey how it indicates the scope of definitions, and how it connects a term to its definition, and modify `extract_definitions()` to suit those circumstances.
 
 ## Varnish caching
 
