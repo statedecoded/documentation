@@ -32,6 +32,7 @@ The following programs and modules are required to run The State Decoded, in add
 	* Windows: `add to php.ini: extension=php_pdo_mysql.dll`
 
 * (Optional) Solr Search Engine
+
 	Instead of the built-in text search engine, you may use the more advanced Solr search engine.  This provides many enhancements over the default engine, but can be difficult to setup and configure.
 
 	* You must use Apache Solr 4.3 or newer.
