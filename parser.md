@@ -179,3 +179,27 @@ This tell us that in the 1995 Acts of Assembly, the instant law was modified (or
 ## create_structure
 
 The only customization that may be helpful here is to populate the `order_by` field in the `structure` table. Many legal codes are ordered in such a way that no standard SQL-based ordering can display them properly (e.g., 4.8, 4.9, 4.10, 4.11, rather than the mathematically proper 4.10, 4.11, 4.8, 4.9, or 4.8, 4.8:A, 4.8:B, 4.8:C). For such codes it may be helpful to populate `order_by` within the SQL query in this method, by whatever ordering mechanisms are available.
+
+# Working with Metadata
+
+You may have additional properties, data, and fields in your legal code that The State Decoded does not know about out-of-the-box.  To include these, you'll need to store them in the law's `metadata`.  For example, for the Virginia code, we include court cases via The Court Listener which reference a given law.
+
+This data is stored in the `laws_meta` database table.  However, instead of directly adding records to this table, you can use an existing instance of the Law class, add your metadata to the object, and call `store_metadata()` to save it.  Here's an example, from the `class.State-sample.inc.php` code:
+
+```
+// Store these decisions in the metadata table.
+$law = new Law();
+$law->section_id = $this->section_id;
+
+$law->metadata->{0} = new stdClass();
+$law->metadata->{0}->key = 'court_decisions';
+$law->metadata->{0}->value = json_encode($this->decisions);
+
+$law->store_metadata();
+```
+
+You can create metadata at any point after the law has been created in the parser (the call to the `Parser->store()`), but in most cases you'll want to store it before the laws are exported (`ParserController->export()`), so that the metadata can appear in the exported data files.
+
+To show this data on a law's page, you'lll need to edit the `htdocs\law.php` file to format the data appropriately.  Again, refer to the `court_decisions` example in that file for reference – in most cases, your data will be available on the law as `$law->metadata->your_field`.
+
+You may also store metadata on a structure, but you will need to manage this manually.  The metadata for structures is stored in the `structure.metadata` field as an object that has been run through the `serialize()` function.  Be careful to load the structure's previous metadata when adding your new metadata, so as not to overwrite previously-created data.
