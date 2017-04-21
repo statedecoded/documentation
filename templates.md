@@ -53,3 +53,43 @@ The site is defined with three breakpoints:
 * Handheld/iPhone
 * Tablet/iPad (Portrait)
 * Everything else
+
+# Creating New Pages
+
+You may add new pages to the site by simply including `HTML` or `PHP` files inside of the `htdocs` directory of the site.  You can then reference those files by name.  Similarly, any images or other assets in that directory can be used on the site.
+
+If you would like to use the template engine of The State Decoded instead of having to include an entire page, simply create a new PHP file with at least the following contents, replacing `$body` with your content.
+
+```
+/*
+ * Create a container for our content.
+ */
+$content = new Content();
+
+$body = 'Hello World';
+
+/*
+ * Put the shorthand $body variable into its proper place.
+ */
+$content->set('body', $body);
+
+/*
+ * Parse the template, which is a shortcut for a few steps that culminate in sending the content
+ * to the browser.
+ */
+$template = Template::create();
+$template->parse($content);
+```
+
+There are other fields available on a page, including the page title and heading. Please have a look at the other pages on the site and the theme's `default.inc.php` template file for specific fields that are available to change via the `$content->set` method.
+
+To have the page appear without the file extension, as the About page and others do, you'll need to add it to the routing system.  The routing system uses simple [regular expressions](http://www.regular-expressions.info/) to match routes.  Simply add a line to the `Specific Routes` section of the `includes/routes.inc.php` file with your page's name, route structure, and filename like this:
+
+```
+$router->addRoute('contact', '^/contact/$', 'contact.php');
+```
+
+
+# Editing Help Content
+
+To customize the help content of any section, you'll need to edit the `htdocs/content/help.json` file.  There, you'll need to give the help content a title, a brief description, and the full content that should appear in the modal popup.
