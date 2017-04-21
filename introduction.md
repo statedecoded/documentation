@@ -20,6 +20,10 @@ Governments, open-government groups, lone data hackers, law libraries, or anybod
 # How It Works
 You provide it with bulk legal data in a simple XML format (or any other format that you might like, if you're comfortable writing PHP), with each XML file storing a single law. After some simple site configuration (editing a config file, maybe making a few tweaks to PHP if you want to customize advanced functionality), you run a parser, which chews through those XML files and uses the data in them to populate a MySQL database. For each law, it stores the text of the law and its relationship to other laws—the chapters etc. into which the laws are divided, and also cross-references between the laws. Then it indexes all of the laws for searching, and exports them in a few different formats for people to download. When the parser is finished, you're left with a complete, wholly functional website for that legal code.
 
+# Understand the Legal Code
+
+You'll need to have some level of understanding of how your legal code is structured to be able to import that data into The State Decoded. Most legal codes have a similar organizational system - that is, there are `laws` (usually referred to as `sections`) contained within a hierarchy of `structures` with different labels and names.  However, from there, every legal code is different. [This blog post](http://krues8dr.com/blog/2016/08/01/what-i-wish-i-had-known-about-decoding-the-law/) summarizes many of the issues that you may discover in your legal code that will complicate your importing process.
+
 # Getting a Copy of the Legal Code
 
 Getting the laws or regulations in question can be a non-trivial challenge. It will almost certainly be more work than actually setting up The State Decoded.
